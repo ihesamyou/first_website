@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <article class="content-section article-section detail-article">
+        <div class="article-header">
+            <h4><b>حسابگر فیبوناچی</b></h4>
+        </div>
+        <hr>
+        <p class="description">در این قسمت میتوانید دنباله فیبوناچی را تا مقدار دلخواه و یا تا nامین عدد این دنباله به دست آورید.</p>
+        <form action="/fibonacci_calculator/" method="POST">
+            {% csrf_token %}
+            <fieldset class="form">
+                <p>برای به دست آوردن nامین عدد دنباله فیبوناچی یک عدد وارد کنید.</p>
+                {{ f_index|crispy }}
+                <input class="btn btn-info mb-3" type="submit" value="حساب کن!">
+                <br>
+                {% if index_answer %}
+                    <p>دنباله فیبوناچی تا {{ f_index.cleaned_data.index }}امین عدد:</p>
+                    <p class="answer">{{ index_answer }}</p>
+                {% endif %}
+            </fieldset>
+            <fieldset class="form">
+                <p>برای به دست آوردن دنباله فیبوناچی تا مقدار دلخواه یک عدد وارد کنید.</p>
+                {{ f_until|crispy }}
+                <input class="btn btn-info mb-3" type="submit" value="حساب کن!">
+                <br>
+                {% if values_until_answer %}
+                    <p>دنباله فیبوناچی تا مقدار دلخواه:</p>
+                    <p class="answer">{{ values_until_answer }}</p>
+                {% endif %}
+            </fieldset>
+        </form>
+    </article>
+{% endblock%}

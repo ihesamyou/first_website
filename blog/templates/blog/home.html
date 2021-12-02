@@ -1,0 +1,41 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div>
+        {% for article in articles %}
+            {% autoescape off %}
+                <article class="content-section article-section">
+                    <div class="article-header">
+                        <h4><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
+                        <span>نویسنده: {{ article.author.first_name }} {{ article.author.last_name }}</span>
+                        <span>{{ article.get_jalalidatetime }}</span>
+                    </div>
+                    <hr style="border-top: 1px solid rgb(179, 179, 179);">
+                    <p class="description">{{ article.description }}</p>
+                    {% if article.image_1 %}
+                        <br>
+                        <img class="article-image"  src="{{ article.image_1.url }}" alt="image">
+                    {% endif %}
+                </article>
+            {% endautoescape %}
+        {% endfor %}
+    </div>
+    <aside>
+        <div class="content-section info">
+            <img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo">
+            <p> به وب سایت من خوش آمدید. من حسین یوسفیان هستم و به موضوعات تکنولوژی داده های کلان و مالی علاقه مندم. </p>
+        </div>
+        {% if quote.error_message %}
+            <div class="content-section quote-section">
+                <br><p>‌{{ quote.error_message }}</p><br>
+            </div>
+        {% elif quote.quote %}
+            <div class="content-section quote-section">
+                <span>نقل قول:</span><br><br>
+                <q>‌{{ quote.quote }}</q><br><br>
+                <span>-{{ quote.quote_author }}</span>
+            </div>
+        {% endif %}
+        
+    </aside>
+{% endblock%}

@@ -1,0 +1,111 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load mptt_tags %}
+{% block content %}
+    {% autoescape off %}
+        <article class="content-section article-section detail-article">
+            <div class="article-header">
+                <h4>{{ article.title }}</h4>
+                <img src="{{ article.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo">
+                <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                <span>{{ article.get_jalalidatetime }}</span>
+            </div>
+            <hr style="border-top: 1px solid var(--border-lines);">
+            <p class="description">{{ article.description }}</p>
+            {% if article.image_1 %}
+                <br>
+                <img class="article-image"  src="{{ article.image_1.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_1 %}
+                <p>{{ article.paragraph_1 }}</p>
+                <br>
+            {% endif %}
+            {% if article.image_2 %}
+                <img class="article-image"  src="{{ article.image_2.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_2 %}
+                <p>{{ article.paragraph_2 }}</p>
+                <br>
+            {% endif %}
+            {% if article.image_3 %}
+                <img class="article-image"  src="{{ article.image_3.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_3 %}
+                <p>{{ article.paragraph_3 }}</p>
+                <br>
+            {% endif %}
+            {% if article.image_4 %}
+                <img class="article-image"  src="{{ article.image_4.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_4 %}
+                <p>{{ article.paragraph_4 }}</p>
+                <br>
+            {% endif %}
+            {% if article.image_5 %}
+                <img class="article-image"  src="{{ article.image_5.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_5 %}
+                <p>{{ article.paragraph_5 }}</p>
+                <br>
+            {% endif %}
+            {% if article.image_6 %}
+                <img class="article-image"  src="{{ article.image_6.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_6 %}
+                <p>{{ article.paragraph_6 }}</p>
+                <br>
+            {% endif %}
+            {% if article.image_7 %}
+                <img class="article-image"  src="{{ article.image_7.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_7 %}
+                <p>{{ article.paragraph_7 }}</p>
+                <br>
+            {% endif %}
+            {% if article.image_8 %}
+                <img class="article-image"  src="{{ article.image_8.url }}" alt="image">
+                <br>
+            {% endif %}
+            {% if article.paragraph_8 %}
+                <p>{{ article.paragraph_8 }}</p>
+            {% endif %}
+
+            <form action="{% url 'article-detail' article.pk %}" method='POST'>
+                {% csrf_token %}
+                {{ comment_form|crispy }}
+                <input type="submit" value="ثبت" class="btn btn-info mb-3">
+            </form>
+            {% if comments %}
+                <div>
+                    <h4>دیدگاه ها</h4>
+                    <hr style="border-top: 1px solid var(--border-lines);">
+                    {% recursetree comments %}
+                        <div class="comment">
+                            <img src="{{ node.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo">
+                            <a href="{% url 'profile' node.author %}"><span>{{ node.author.first_name }} {{ node.author.last_name }}</span></a>
+                            <span>{{ node.get_jalalidatetime }}</span>
+                            <p>{{ node.comment }}</p>
+                            {% if cm == node.id %}
+                                <form action="{% url 'article-detail' article.pk node.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    {{ comment_form|crispy }}
+                                    <input type="submit" value="ثبت" class="btn btn-info mb-3">
+                                </form>
+                            {% endif %}
+                            {% if not node.is_leaf_node %}
+                                    {{ child.user }}{{ children }}
+                            {% endif %}
+                        </div>
+                    {% endrecursetree %}
+                <div>
+            {% endif %}
+        </article>
+    {% endautoescape %}
+{% endblock %}

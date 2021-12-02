@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <img src="{{ user.profile.photo.url }}"></img>
+    <h6>{{ user.username }}</h6>
+    <h6>{{ user.email }}</h6>
+    <h6>{{ user.first_name }}</h6>
+    <h6>{{ user.last_name }}</h6>
+    <h6>{{ user.profile.receive_updates }}</h6>
+    {% for comment in comments %}
+        <h6>{{ comment }}</h6>
+    {% endfor %}
+
+{% endblock %}
