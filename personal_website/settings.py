@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'captcha',
-    'mptt'
+    'mptt',
+    'django_celery_results',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -149,9 +151,6 @@ STATICFILES_DIRS = (
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-CELERY_BROKER_URL = 'amqp://localhost'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
@@ -173,3 +172,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 RECAPTCHA_PUBLIC_KEY = '6LfwV0wdAAAAABvl0iekV9kjVHOJtyA6MdieoUGI'
 RECAPTCHA_PRIVATE_KEY = '6LfwV0wdAAAAACxSHcX978dbFVk4lTyFlqbP8FE_'
+
+
+# Celery configurations
+CELERY_BROKER_URL = 'amqp://django_server:blackmirror@localhost:5672/django_vhost'
+CELERY_ENABLE_UTC = False
+CELERY_TIMEZONE = 'Asia/Tehran'

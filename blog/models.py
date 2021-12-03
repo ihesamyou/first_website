@@ -70,3 +70,12 @@ class Comment(MPTTModel):
             return f'Comment #{self.id} on Article {self.article}'
         else:
             return f'Unconfirmed Comment #{self.id} on Article {self.article}'
+
+
+class Quote(models.Model):
+    author = models.CharField(max_length=100)
+    quote = models.TextField()
+    identifier = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.identifier
