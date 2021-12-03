@@ -25,15 +25,11 @@
             <img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo">
             <p> به وب سایت من خوش آمدید. من حسین یوسفیان هستم و به موضوعات تکنولوژی داده های کلان و مالی علاقه مندم. </p>
         </div>
-        {% if quote.error_message %}
-            <div class="content-section quote-section">
-                <br><p>‌{{ quote.error_message }}</p><br>
-            </div>
-        {% elif quote.quote %}
+        {% if quote.quote %}
             <div class="content-section quote-section">
                 <span>نقل قول:</span><br><br>
                 <q>‌{{ quote.quote }}</q><br><br>
-                <span>-{{ quote.quote_author }}</span>
+                <span>-{{ quote.author }}</span>
             </div>
         {% endif %}
         

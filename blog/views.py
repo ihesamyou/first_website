@@ -1,17 +1,15 @@
 from django.shortcuts import redirect, render
 from .models import Article
 from django.core.cache import cache
-# from . quote import get_quote
 from .forms import CommentForm
 from .models import Comment
 from django.shortcuts import get_object_or_404
 
 
 def home(request):
-    # cache.set('quote', get_quote(), 300)
     context = {
         'articles': Article.objects.all(),
-        # 'quote': cache.get('quote')
+        'quote': cache.get('quote')
     }
     return render(request, 'blog/home.html', context)
 

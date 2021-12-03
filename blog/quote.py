@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def get_quote():
+def scrape_quote():
     """returns a quote dictionary scraped from www.time.ir that contains quote and quote_author.
     if the quote is a not formatted in a single html tag (like poetries), it makes another request
     and will get another quote. see time.ir for understanding how the quote is represented.
