@@ -216,8 +216,22 @@ aside {
 .info img {
   width: 120px;
   height: 120px;
+  display: block;
+  margin: auto;
 }
 
+.info a {
+  color: var(--text-color);
+}
+
+.info a:visited {
+  color: var(--text-color);
+}
+
+.info a:hover {
+  color: var(--theme-color);
+  text-decoration: none;
+}
 .quote-section {
   margin-top: 2rem;
   text-align: justify;
@@ -263,15 +277,15 @@ aside {
   text-decoration: none;
 }
 
+.button {
+  padding: 0.3rem 1rem 0.3rem 1rem;
+}
+
 .form {
   margin: 3rem;
   border: 1px solid var(--border-lines);
   border-radius: 5px;
   padding: 1.5rem;
-}
-
-.asteriskField {
-  display: none;
 }
 
 .login-form {

@@ -39,8 +39,13 @@
 
         <div class="left-navbar">
             <ul>
-              <li><a href="{% url 'login' %}" {% if request.path == "/login/" %}class="active"{% endif %}>ورود</a>
-              </li><li style="cursor: default;">/</li><li><a href="{% url 'register' %}" {% if request.path == "/register/" %}class="active"{% endif %}>ثبت نام</a></li>
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' user %}" {% if "profile" in request.path %}class="active"{% endif %}>پروفایل</a>
+                </li><li style="cursor: default;">/</li><li><a href="{% url 'logout' %}" {% if request.path == "/logout/" %}class="active"{% endif %}>خروج</a></li>
+              {% else %}
+                <li><a href="{% url 'login' %}" {% if request.path == "/login/" %}class="active"{% endif %}>ورود</a>
+                </li><li style="cursor: default;">/</li><li><a href="{% url 'register' %}" {% if request.path == "/register/" %}class="active"{% endif %}>ثبت نام</a></li>
+              {% endif %}
             </ul>
         </div>  
     </nav>
