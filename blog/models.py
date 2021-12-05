@@ -14,6 +14,7 @@ class Article(models.Model):
     date_posted = models.DateTimeField(
         auto_now_add=True)
     description = models.TextField(max_length=250)
+    metatags = models.TextField(max_length=450, default=None, blank=True)
     image_1 = models.ImageField(
         upload_to='article-images/', default=None, blank=True)
     paragraph_1 = models.TextField(default=None, blank=True)

@@ -4,6 +4,7 @@ from django.core.cache import cache
 from .forms import CommentForm
 from .models import Comment
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 def home(request):
@@ -29,6 +30,7 @@ def article(request, pk, cm=None):
                 new_reply.author = request.user
                 new_reply.parent = Comment.objects.get(pk=cm)
                 new_reply.save()
+                messages.success(request, f'نظر شما با موفقیت ثبت شد.')
                 return redirect('article-detail', pk)
 
         else:
@@ -40,7 +42,8 @@ def article(request, pk, cm=None):
                 new_comment.comment = comment_form.cleaned_data.get('comment')
                 new_comment.author = request.user
                 new_comment.save()
-
+                messages.success(request, f'نظر شما با موفقیت ثبت شد.')
+                return redirect('article-detail', pk)
     else:
         comment_form = CommentForm()
         reply_form = CommentForm()

@@ -44,9 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'rest_framework',
-    'captcha',
     'mptt',
-    'django_celery_results',
     'django_celery_beat'
 ]
 
@@ -107,6 +105,13 @@ CACHES = {
     }
 }
 
+
+# Celery configurations
+CELERY_BROKER_URL = 'amqp://django_server:blackmirror@localhost:5672/django_vhost'
+CELERY_ENABLE_UTC = False
+CELERY_TIMEZONE = 'Asia/Tehran'
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -159,7 +164,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'home-page'
-LOGOUT_REDIRECT_URL = 'home-page'
+LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -170,11 +175,5 @@ EMAIL_HOST_PASSWORD = os.environ['PERSONAL_EMAIL_PASS']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-RECAPTCHA_PUBLIC_KEY = '6LfwV0wdAAAAABvl0iekV9kjVHOJtyA6MdieoUGI'
-RECAPTCHA_PRIVATE_KEY = '6LfwV0wdAAAAACxSHcX978dbFVk4lTyFlqbP8FE_'
-
-
-# Celery configurations
-CELERY_BROKER_URL = 'amqp://django_server:blackmirror@localhost:5672/django_vhost'
-CELERY_ENABLE_UTC = False
-CELERY_TIMEZONE = 'Asia/Tehran'
+# RECAPTCHA_PUBLIC_KEY = '6LfwV0wdAAAAABvl0iekV9kjVHOJtyA6MdieoUGI'
+# RECAPTCHA_PRIVATE_KEY = '6LfwV0wdAAAAACxSHcX978dbFVk4lTyFlqbP8FE_'

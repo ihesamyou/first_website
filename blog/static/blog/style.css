@@ -138,6 +138,11 @@ nav li a.active {
   top: 0;
 }
 
+.messages {
+  margin: 2rem auto 1rem;
+  width: 70%;
+}
+
 main {
   margin: 2rem 2rem 3rem;
   display: flex;
@@ -206,7 +211,7 @@ main {
 
 aside {
   margin-right: 2rem;
-  width: 37ch;
+  width: 28ch;
 }
 
 .info {
@@ -232,6 +237,7 @@ aside {
   color: var(--theme-color);
   text-decoration: none;
 }
+
 .quote-section {
   margin-top: 2rem;
   text-align: justify;
@@ -278,7 +284,7 @@ aside {
 }
 
 .button {
-  padding: 0.3rem 1rem 0.3rem 1rem;
+  padding: 0.3rem 0.7rem 0.3rem 0.7rem;
 }
 
 .form {

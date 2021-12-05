@@ -1,6 +1,9 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% load mptt_tags %}
+{% block metatags %}
+    {{ article.metatags }}
+{% endblock %}
 {% block content %}
     {% autoescape off %}
         <article class="content-section article-section detail-article">
@@ -81,7 +84,7 @@
                 <form action="{% url 'article-detail' article.pk %}" method='POST'>
                     {% csrf_token %}
                     {{ comment_form|crispy }}
-                    <input class="btn btn-success button"type="submit" value="ثبت">
+                    <input class="btn btn-info button"type="submit" value="ثبت">
                 </form><br>
             {% else %}
                 <h5>برای ثبت نظر خود <a href="{% url 'login' %}">وارد شوید</a> و یا <a href="{% url 'register' %}">ثبت نام کنید</a>.</h5><br>
@@ -96,7 +99,7 @@
                             <a href="{% url 'profile' node.author %}"><span>{{ node.author.first_name }} {{ node.author.last_name }}</span></a>
                             <span>{{ node.get_jalalidatetime }}</span>
                             {% if user.is_authenticated %}
-                                <a class="btn btn-success button" style="margin-right: 1.5rem;" href="{% url 'article-detail' article.id node.id %}#comment{{node.id}}">پاسخ</a>
+                                <a class="btn btn-dark button" style="margin-right: 1.5rem;" href="{% url 'article-detail' article.id node.id %}#comment{{node.id}}">پاسخ</a>
                             {% endif %}
                             <p>{{ node.comment }}</p>
                             {% if user.is_authenticated %}
@@ -104,7 +107,7 @@
                                     <form action="{% url 'article-detail' article.pk node.pk %}" method="POST">
                                         {% csrf_token %}
                                         {{ comment_form|crispy }}
-                                        <input type="submit" value="ثبت" class="btn btn-success button">
+                                        <input type="submit" value="ثبت" class="btn btn-info button">
                                     </form>
                                 {% endif %}
                             {% endif %}

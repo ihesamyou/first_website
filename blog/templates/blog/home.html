@@ -1,5 +1,9 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% block metatags %}
+    <meta name="description" content="If You're Interested in Programming, Finance, Big data and Philosophy, This Site is for You.">
+    <meta name="keywords" content="Technology, Programming, Finance, Big data, Philosophy">
+{% endblock %}
 {% block content %}
     <div>
         {% for article in articles %}
@@ -7,7 +11,7 @@
                 <article class="content-section article-section">
                     <div class="article-header">
                         <h4><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
-                        <span>نویسنده: <a href="{% url 'profile' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                        <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
                         <span>{{ article.get_jalalidatetime }}</span>
                     </div>
                     <hr style="border-top: 1px solid rgb(179, 179, 179);">
@@ -22,7 +26,7 @@
     </div>
     <aside>
         <div class="content-section info">
-            <a href="{% url 'about-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo"></a><a href="{% url 'about-me' %}" style="text-align: center;">حسین یوسفیان</a><br>
+            <a href="{% url 'about-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo"></a><a href="{% url 'about-me' %}">حسین یوسفیان</a><br>
             <p>به وب سایت من خوش آمدید. من در زمینه برنامه نویسی فعالیت میکنم و به موضوعات تکنولوژی، مالی، کلان داده و فلسفه علاقه مندم.</p>
         </div>
         {% if quote.quote %}

@@ -1,6 +1,8 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% block content %}
-    <div class="content-section detail-article">
-        <h6>About Page</h6>
+    <div class="content-section detail-article info">
+        <img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo">
+        <p></p>
     </div>
 {% endblock%}
