@@ -225,6 +225,23 @@ aside {
   margin: auto;
 }
 
+.info h4 {
+  text-align: center;
+  border-bottom: 1px solid var(--border-lines);
+  padding: 1.5rem;
+}
+
+.icons {
+  padding: 2rem 6rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.info div img {
+  width: 70px;
+  height: 70px;
+}
+
 .info a {
   color: var(--text-color);
 }
@@ -236,6 +253,18 @@ aside {
 .info a:hover {
   color: var(--theme-color);
   text-decoration: none;
+}
+
+.about-page {
+  padding: 2rem;
+}
+
+.about-page-header {
+}
+
+.about-page-header img {
+  width: 200px;
+  height: 200px;
 }
 
 .quote-section {

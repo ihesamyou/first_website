@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import EmailField
 from users.models import User
 from django.utils.timezone import localtime
 from persiantools.jdatetime import JalaliDateTime
@@ -80,3 +81,13 @@ class Quote(models.Model):
 
     def __str__(self):
         return self.identifier
+
+
+class ContactMessage(models.Model):
+    title = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField(max_length=3000)
+
+    def __str__(self):
+        return self.title

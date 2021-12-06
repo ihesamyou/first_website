@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import Article
 from django.core.cache import cache
-from .forms import CommentForm
+from .forms import CommentForm, ContactForm
 from .models import Comment
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -60,6 +60,15 @@ def article(request, pk, cm=None):
 
 
 def about(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'پیغام شما با موفقیت ثبت شد.')
+
+    form = ContactForm()
     context = {
+        'form': form
     }
     return render(request, 'blog/about.html', context)
