@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.fields import EmailField
 from users.models import User
 from django.utils.timezone import localtime
 from persiantools.jdatetime import JalaliDateTime
@@ -8,6 +7,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Article(models.Model):
+    """A model for admin users to publish articles. 8 separate paragraphs are provided for showing images
+    between paragraphs if needed. get_jalalidatetime function will turn Gregorian datetime to jalalai datetime."""
 
     title = models.CharField(max_length=120)
     author = models.ForeignKey(
@@ -50,6 +51,11 @@ class Article(models.Model):
 
 
 class Comment(MPTTModel):
+    """Comments for registered users.
+    django-mptt is used for saving comments with their children(replies) and also for
+    retrieving them on article_detail template. see django-mptt docs for more.
+    get_jalalidatetime function will turn Gregorian datetime to jalalai datetime."""
+
     article = models.ForeignKey(
         Article, on_delete=models.CASCADE)
     comment = models.TextField(max_length=1500)
@@ -75,6 +81,10 @@ class Comment(MPTTModel):
 
 
 class Quote(models.Model):
+    """A model that gets updated by celery's get_quote task using quote.py script.
+    celery's random_quote task will use data from this model to save a random quote to cache.
+    identifier field is used for removing the possibility of the same quote being saved to database twice."""
+
     author = models.CharField(max_length=100)
     quote = models.TextField()
     identifier = models.CharField(max_length=100)
@@ -84,10 +94,18 @@ class Quote(models.Model):
 
 
 class ContactMessage(models.Model):
+    """Messages from users to Admins submitted in contact page.
+    get_jalalidatetime is used here to show the jalali datetime in name of each instance."""
+
     title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField(max_length=3000)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def get_jalalidatetime(self):
+        datetime = localtime(self.date)
+        return digits.en_to_fa(JalaliDateTime.to_jalali(datetime).strftime("%H:%M | %Y/%m/%d"))
 
     def __str__(self):
-        return self.title
+        return f'{self.title} on {self.get_jalalidatetime()}'

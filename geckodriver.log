@@ -918,3 +918,19 @@ DevTools listening on ws://localhost:53167/devtools/browser/49fac336-b932-49ad-8
 
 ###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+1638812542146	geckodriver	INFO	Listening on 127.0.0.1:39329
+1638812542646	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "41325" "-no-remote" "-profile" "/tmp/rust_mozprofileTiYwxT"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1638812545516	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileTiYwxT/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:41325/devtools/browser/cdf33a39-4f07-4495-8049-b6fea01b846b
+1638812548418	Marionette	INFO	Listening on port 39513
+1638812548512	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+Marionette threw an error: TypeError: this.curBrowser.contentBrowser is null
+GeckoDriver.prototype.navigateTo@chrome://remote/content/marionette/driver.js:806:3
+
+1638812554271	Marionette	INFO	Stopped listening on port 39513
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "Sqlite.jsm: wait until all connections are closed" is finished, it is too late to register completion condition "protections.sqlite#0: waiting for shutdown"
