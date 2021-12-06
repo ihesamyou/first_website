@@ -6,14 +6,14 @@
 {% endblock %}
 {% block content %}
     <div class="content-section detail-article info" style="padding: 1rem 6rem 3rem;">
-        <h4>میتوانید از طریق شبکه های زیر با من تماس بگیرید</h4>
+        <h4>میتوانید از طریق شبکه های زیر با من در ارتباط باشید</h4>
         <div class="icons">
             <a href="https://stackoverflow.com/users/16447651/hossein-yousefian" target="_blank"><img src="{% static 'blog/stackoverflow.png' %}" alt="stackoverflow link"></a>
             <a href="https://www.linkedin.com/in/hossein-yousefian-2b228b213/" target="_blank"><img src="{% static 'blog/linkedin.png' %}" alt="linkedin link"></a>
             <a href="https://github.com/ihosseinu" target="_blank"><img src="{% static 'blog/github.svg' %}" class="rounded-circle" alt="github link" style="background-color: white;"></a>
         </div>
         <h4 style="margin-top: 2rem;">و یا در اینجا یک پیام بگذارید</h4>
-        <form action="{% url 'about-me' %}" method="POST">
+        <form action="{% url 'contact-me' %}" method="POST">
             {% csrf_token %}
             {{ form|crispy }}
             <input type="submit" value="ثبت" class="btn btn-info button">

@@ -59,7 +59,7 @@ def article(request, pk, cm=None):
     return render(request, 'blog/article_detail.html', context)
 
 
-def about(request):
+def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
 
@@ -71,4 +71,4 @@ def about(request):
     context = {
         'form': form
     }
-    return render(request, 'blog/about.html', context)
+    return render(request, 'blog/contact.html', context)

@@ -255,18 +255,6 @@ aside {
   text-decoration: none;
 }
 
-.about-page {
-  padding: 2rem;
-}
-
-.about-page-header {
-}
-
-.about-page-header img {
-  width: 200px;
-  height: 200px;
-}
-
 .quote-section {
   margin-top: 2rem;
   text-align: justify;
