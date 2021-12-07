@@ -54,6 +54,7 @@ class Comment(MPTTModel):
     """Comments for registered users.
     django-mptt is used for saving comments with their children(replies) and also for
     retrieving them on article_detail template. see django-mptt docs for more.
+    confirmed field is for admins to cofirm the comments before displaying them on the site.
     get_jalalidatetime function will turn Gregorian datetime to jalalai datetime."""
 
     article = models.ForeignKey(

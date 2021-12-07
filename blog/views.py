@@ -8,6 +8,7 @@ from django.contrib import messages
 
 
 def home(request):
+    """Home page view. displays articles and a quote."""
     context = {
         'articles': Article.objects.all(),
         'quote': cache.get('quote')
@@ -16,6 +17,10 @@ def home(request):
 
 
 def article(request, pk, cm=None):
+    """Article view. pk is article's id and cm is id of a specific comment for replying.
+    shows details of an article including confirmed comments and a comment_form to submit
+    a new comment and a reply_form for new reply to a comment if the cm argument is passed to the view."""
+
     article_obj = get_object_or_404(Article, id=pk)
 
     if request.method == 'POST':
@@ -53,19 +58,21 @@ def article(request, pk, cm=None):
         'reply_form': reply_form,
         'cm': cm,
         'article': article_obj,
-        'comments': Comment.objects.filter(article=article_obj)
+        'comments': Comment.objects.filter(article=article_obj, confirmed=True)
     }
 
     return render(request, 'blog/article_detail.html', context)
 
 
 def contact(request):
+    """Contact page view. Uses ContactForm modelform to save user messages into ContactMessage model."""
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'پیغام شما با موفقیت ثبت شد.')
+            messages.success(request, 'پیام شما با موفقیت ثبت شد.')
 
     form = ContactForm()
     context = {

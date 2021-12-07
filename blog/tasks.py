@@ -7,6 +7,9 @@ from django.core.cache import cache
 
 @shared_task
 def get_quote():
+    """This task will get a quote using quote.py and checks if the quote is already in database using identifier.
+    if there is a connction problem in the quote.py, it will do nothing."""
+
     quote_obj = scrape_quote()
 
     if quote_obj and not Quote.objects.filter(identifier=quote_obj['identifier']):
@@ -16,6 +19,7 @@ def get_quote():
 
 @shared_task
 def random_quote():
+    """Saves a random quote from Quote model to the cache."""
     items = Quote.objects.all()
     quote = random.choice(items)
     cache.set('quote', quote, 310)
