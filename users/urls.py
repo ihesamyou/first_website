@@ -2,12 +2,14 @@ from os import name
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+from .forms import LoginForm
 
 urlpatterns = [
     path('profile/<str:username>', views.profile, name='profile'),
     path('profile/edit', views.profile_edit, name='profile-edit'),
     path('register/', views.register, name='register'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html',
+         authentication_form=LoginForm), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name='users/password_change.html'),
          name='password_change'),
