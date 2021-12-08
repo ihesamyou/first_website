@@ -6,12 +6,11 @@ from .models import Profile, User
 
 class LoginForm(AuthenticationForm):
     """
-    We use this form in order to display labels and errors in persian instead to default AuthenticationForm.
+    We use this form in order to display labels and errors in persian instead of default AuthenticationForm's labels and forms.
     """
 
     username = forms.CharField(max_length=254, label=("نام کاربری"))
     password = forms.CharField(label=("رمز عبور"), widget=forms.PasswordInput)
-
     error_messages = {
         'invalid_login': ("نام کاربری یا رمز عبور اشتباه است."),
         'inactive': ("این اکانت غیرفعال است."),
@@ -20,18 +19,22 @@ class LoginForm(AuthenticationForm):
 
 class RegisterForm(UserCreationForm):
     """
-    We use this form in order to display labels and errors in persian instead to default UserCreationForm.
+    We use this form in order to display labels and errors in persian instead of default UserCreationForm's labels and forms.
     """
+
+    username = forms.CharField(max_length=254, label=("نام کاربری"), error_messages={
+        "unique": "این نام کاربری قبلا ثبت شده است."})
     password1 = forms.CharField(
         label="رمز عبور",
         strip=False,
-        widget=forms.PasswordInput,
-        help_text=password_validation.password_validators_help_text_html())
-
+        widget=forms.PasswordInput)
     password2 = forms.CharField(
         label="تکرار رمز عبور",
         strip=False,
         widget=forms.PasswordInput)
+    error_messages = {
+        'password_mismatch': ("رمز عبورها باید دقیقا مثل هم باشند.")
+    }
 
     class Meta:
         model = User
@@ -40,7 +43,6 @@ class RegisterForm(UserCreationForm):
         labels = {
             'first_name': 'نام',
             'last_name': 'نام خانوادگی',
-            'username': 'نام کاربری',
             'email': 'ایمیل'
         }
 

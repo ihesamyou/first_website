@@ -1,9 +1,12 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <form method="post">
+    <form class="content-section middle-form" method="post">
         {% csrf_token %}
+        <h4>ثبت نام</h4>
+        <hr style="border-top: 1px solid var(--border-lines);">
+        <p style="margin-bottom: 1.5rem;">برای استفاده از قابلیت های سایت یک حساب کاربری بسازید.</p>
         {{ form|crispy }}
-        <input type="submit" value="ثبت نام">
+        <input style="margin: 1rem 0;" class="btn btn-info button" type="submit" value="ورود">
     </form>
 {% endblock %}
