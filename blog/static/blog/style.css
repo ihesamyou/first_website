@@ -48,7 +48,7 @@
   }
 
   .comment span {
-    margin-right: 0.5rem !important;
+    margin-right: 0.5rem2 1212212 !important;
   }
 
   .comment p {
@@ -56,14 +56,37 @@
     padding: 0.3rem !important;
   }
 
-  .middle-form {
+  .middle-content {
     width: 90% !important;
+  }
+
+  .profile {
+    display: flex !important;
+    flex-direction: column;
+    width: 95% !important;
+    padding: 1rem !important;
+  }
+
+  .profile img {
+    max-width: 225px !important;
+    height: auto !important;
+    margin: 1rem auto 0 !important;
+  }
+
+  .profile-info {
+    margin: 3rem 0 1rem !important;
+  }
+
+  .profile-comments {
+    margin: 2rem auto !important;
+    width: 100%;
   }
 }
 
 :root {
   font-size: 16px;
   font-family: "Vazir", "Open Sans", sans-serif;
+  overflow-wrap: break-word;
   --theme-color: rgb(122, 214, 2);
   --nav-bg: rgb(51, 51, 51);
   --nav-hover-bg: rgb(90, 90, 90);
@@ -308,13 +331,36 @@ aside {
   padding: 0.3rem 0.7rem 0.3rem 0.7rem;
 }
 
-.middle-form {
+.middle-content {
   margin: 5vh auto;
   padding: 1.5rem 2.5rem;
   width: 60%;
 }
 
+.profile {
+  margin: 5vh auto;
+  padding: 1.5rem 2.5rem;
+  width: 80%;
+  display: grid;
+  grid-template-areas:
+    "image   profile-info"
+    "comments   comments";
+}
+
+.profile img {
+  grid-area: image;
+}
+
+.profile-info {
+  grid-area: profile-info;
+  margin: 3rem 1rem 0 0;
+}
+
+.profile-comments {
+  grid-area: comments;
+  margin-top: 3rem;
+}
+
 .answer {
   direction: ltr;
-  overflow-wrap: break-word;
 }

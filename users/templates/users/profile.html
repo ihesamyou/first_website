@@ -1,14 +1,26 @@
 {% extends "blog/base.html" %}
 {% block content %}
-
-    <img src="{{ user.profile.photo.url }}"></img>
-    <h6>{{ user.username }}</h6>
-    <h6>{{ user.email }}</h6>
-    <h6>{{ user.first_name }}</h6>
-    <h6>{{ user.last_name }}</h6>
-    <h6>{{ user.profile.receive_updates }}</h6>
-    {% for comment in comments %}
-        <h6>{{ comment }}</h6>
-    {% endfor %}
-
+    <div class="content-section profile">
+        <img class="rounded-circle" src="{{ user.profile.photo.url }}"></img>
+        <div class="profile-info">
+            <h6>نام:  {{ user.first_name }}</h6>
+            <h6>نام خانوادگی: {{ user.last_name }}</h6>
+            <h6>نام کاربری:   {{ user.username }}</h6>
+            <h6>ایمیل:   {{ user.email }}</h6>
+            {% if user.profile.receive_updates %}
+                <h6>دریافت آپدیت های سایت:   بله</h6>
+            {% else %}
+                <h6>دریافت آپدیت های سایت:   خیر</h6>
+            {% endif %}
+        </div>
+        {% if comments %}
+            <div class="profile-comments">
+                <h5>دیدگاه ها</h5>
+                <hr style="border-top: 1px solid var(--border-lines);">
+                {% for comment in comments %}
+                    <div class="comment">{{ comment.comment }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
