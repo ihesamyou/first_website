@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from .models import Article
 from django.core.cache import cache
 from .forms import CommentForm, ContactForm
 from .models import Comment
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.views.generic.edit import UpdateView, DeleteView
 
 
 def home(request):
@@ -62,6 +64,21 @@ def article(request, pk, cm=None):
     }
 
     return render(request, 'blog/article_detail.html', context)
+
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    fields = ['comment']
+    template_name = 'blog/comment_update.html'
+
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    fields = ['comment']
+    template_name = 'blog/comment_delete.html'
+
+    def get_success_url(self):
+        return reverse(article, kwargs={'pk': self.object.article.id})
 
 
 def contact(request):

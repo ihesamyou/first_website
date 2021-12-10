@@ -95,11 +95,15 @@
                     <hr style="border-top: 1px solid var(--border-lines);">
                     {% recursetree comments %}
                         <div class="comment" id="comment{{node.id}}">
-                            <a href="{% url 'profile' node.author %}"><img src="{{ node.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
-                            <a href="{% url 'profile' node.author %}"><span>{{ node.author.first_name }} {{ node.author.last_name }}</span></a>
+                            <a class="comment-link" href="{% url 'profile' node.author %}"><img src="{{ node.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
+                            <a class="comment-link" href="{% url 'profile' node.author %}"><span>{{ node.author.first_name }} {{ node.author.last_name }}</span></a>
                             <span>{{ node.get_jalalidatetime }}</span>
                             {% if user.is_authenticated %}
-                                <a class="btn btn-dark button" style="margin-right: 1.5rem;" href="{% url 'article-detail' article.id node.id %}#comment{{node.id}}">پاسخ</a>
+                                <a class="btn btn-secondary button" style="margin-right: 1.5rem;" href="{% url 'article-detail' article.id node.id %}#comment{{node.id}}">پاسخ</a>
+                                {% if user == node.author %}
+                                    <a class="btn btn-danger button" style="margin-right: 0.5rem;" href="{% url 'comment-delete' node.id %}">حذف</a>
+                                    <a class="btn btn-dark button" style="margin-right: 0.5rem;" href="{% url 'comment-update' node.id %}">ویرایش</a>
+                                {% endif %}
                             {% endif %}
                             <p>{{ node.comment }}</p>
                             {% if user.is_authenticated %}

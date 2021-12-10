@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form class="content-section middle-content" method="post">
+        {% csrf_token %}
+        <h4>حذف دیدگاه</h4>
+        <hr style="border-top: 1px solid var(--border-lines);">
+        <p>آیا از حذف دیدگاه خود مطمئن هستید؟</p>
+        {{ form|crispy }}
+        <input style="margin: 1rem 0;" class="btn btn-danger button" type="submit" value="حذف دیدگاه">
+        <a class="btn btn-secondary button" href="{% url 'article-detail' comment.article.id %}">بازگشت</a>
+    </form>
+{% endblock %}

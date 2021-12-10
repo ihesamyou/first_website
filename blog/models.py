@@ -4,6 +4,7 @@ from django.utils.timezone import localtime
 from persiantools.jdatetime import JalaliDateTime
 from persiantools import digits
 from mptt.models import MPTTModel, TreeForeignKey
+from django.urls import reverse
 
 
 class Article(models.Model):
@@ -59,7 +60,7 @@ class Comment(MPTTModel):
 
     article = models.ForeignKey(
         Article, on_delete=models.CASCADE)
-    comment = models.TextField(max_length=1500)
+    comment = models.TextField(max_length=1500, verbose_name=('دیدگاه شما'))
     date_posted = models.DateTimeField(
         auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
@@ -73,6 +74,9 @@ class Comment(MPTTModel):
     def get_jalalidatetime(self):
         datetime = localtime(self.date_posted)
         return digits.en_to_fa(JalaliDateTime.to_jalali(datetime).strftime("%H:%M | %Y/%m/%d"))
+
+    def get_absolute_url(self):
+        return reverse('article-detail', kwargs={'pk': self.article.pk})
 
     def __str__(self):
         if self.confirmed:
