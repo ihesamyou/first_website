@@ -20,9 +20,10 @@ def register(request):
 
 @login_required
 def profile(request, username):
-    user = get_object_or_404(User, username=username)
+    user_requested = get_object_or_404(User, username=username)
     context = {
-        'comments': Comment.objects.filter(author=user)
+        'user_requested': user_requested,
+        'comments': Comment.objects.filter(author=user_requested)
     }
     return render(request, 'users/profile.html', context)
 

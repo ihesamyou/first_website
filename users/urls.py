@@ -5,8 +5,8 @@ from .forms import LoginForm, PasswordChange, PasswordReset, ConfirmPasswordRese
 
 
 urlpatterns = [
-    path('profile/<str:username>', views.profile, name='profile'),
-    path('profile/edit', views.profile_edit, name='profile-edit'),
+    path('profile/<str:username>/', views.profile, name='profile'),
+    path('profile/edit/', views.profile_edit, name='profile-edit'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html',
          authentication_form=LoginForm), name='login'),

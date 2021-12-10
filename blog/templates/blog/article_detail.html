@@ -95,9 +95,9 @@
                     <hr style="border-top: 1px solid var(--border-lines);">
                     {% recursetree comments %}
                         <div class="comment" id="comment{{node.id}}">
-                            <a class="comment-link" href="{% url 'profile' node.author %}"><img src="{{ node.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
-                            <a class="comment-link" href="{% url 'profile' node.author %}"><span>{{ node.author.first_name }} {{ node.author.last_name }}</span></a>
-                            <span>{{ node.get_jalalidatetime }}</span>
+                            <a href="{% url 'profile' node.author %}"><img src="{{ node.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
+                            <span><a href="{% url 'profile' node.author %}">{{ node.author.first_name }} {{ node.author.last_name }}</a></span><span>
+                            {{ node.get_jalalidatetime }}</span>
                             {% if user.is_authenticated %}
                                 <a class="btn btn-secondary button" style="margin-right: 1.5rem;" href="{% url 'article-detail' article.id node.id %}#comment{{node.id}}">پاسخ</a>
                                 {% if user == node.author %}

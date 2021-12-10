@@ -192,7 +192,11 @@ main {
   text-align: justify;
 }
 
-.content-section a {
+.content-section p a {
+  color: var(--theme-color);
+}
+
+.content-section p a:visited {
   color: var(--theme-color);
 }
 
@@ -314,15 +318,15 @@ aside {
   padding: 0.3rem;
 }
 
-.comment a {
+.comment span a {
   color: var(--text-color);
 }
 
-.comment a:visited {
+.comment span a:visited {
   color: var(--text-color);
 }
 
-.comment a:hover {
+.comment span a:hover {
   color: var(--theme-color);
   text-decoration: none;
 }
