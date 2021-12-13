@@ -5,7 +5,8 @@
         {% csrf_token %}
         <h4>ورود</h4>
         <hr style="border-top: 1px solid var(--border-lines);">
-        <p style="margin-bottom: 1.5rem;">برای استفاده از قابلیت های سایت وارد شوید.</p>
+        <p style="margin-bottom: 0.5rem;">برای استفاده از قابلیت های سایت وارد شوید.</p>
+        <p style="margin-bottom: 0;">اگر حساب کاربری ندارید، <a href="{% url 'register' %}">ثبت نام کنید</a>.</p><br>
         {{ form|crispy }}
         <input style="margin: 1rem 0;" class="btn btn-info button" type="submit" value="ورود">
     </form>

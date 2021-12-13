@@ -25,6 +25,3 @@ def get_prices():
             return currency_prices
     except:
         return None
-
-
-get_prices()

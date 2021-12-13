@@ -200,6 +200,14 @@ main {
   color: var(--theme-color);
 }
 
+.content-section span a {
+  color: var(--theme-color);
+}
+
+.content-section span a:visited {
+  color: var(--theme-color);
+}
+
 .article-section {
   padding: 1.2rem 2rem;
   margin-top: 2.5rem;

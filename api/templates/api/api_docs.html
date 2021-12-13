@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block metatags %}
+    <meta name="keywords" content="ihosseinu">
+{% endblock %}
+{% block content %}
+    <div class="content-section detail-article" style="padding: 1rem 6rem 3rem;">
+        <h4>APIs</h4>
+        <hr style="border-top: 1px solid var(--border-lines);">
+        <p class="api">این سایت دارای ۳ api برای استفاده توسعه دهندگان است:<br><br>
+            <a style="color: var(--theme-color);" href="{% url 'currency-docs' %}"><h4>API ارزها</h4></a><br>
+            <a style="color: var(--theme-color);" href="{% url 'quote-docs' %}"><h4>API نقل قول</h4></a><br>
+            <a style="color: var(--theme-color);" href="{% url 'fibonacci-docs' %}"><h4>API فیبوناچی</h4></a>
+        </p>
+    </div>
+{% endblock%}

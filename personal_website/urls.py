@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('features.urls')),
     path('', include('users.urls')),
-    # path('api/', include('api.urls'))
+    path('api/', include('api.urls'))
 ]
 
 if settings.DEBUG:
