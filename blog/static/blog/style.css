@@ -88,7 +88,7 @@
   font-family: "Vazir", "Open Sans", sans-serif;
   overflow-wrap: break-word;
   --theme-color: rgb(122, 214, 2);
-  --nav-bg: rgb(51, 51, 51);
+  --nav-bg: black;
   --nav-hover-bg: rgb(90, 90, 90);
   --text-color: white;
   --border-lines: rgb(151, 151, 151);
@@ -104,10 +104,13 @@
 }
 
 body {
-  background-image: url("background-image.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background: rgb(14, 125, 226);
+  background: linear-gradient(
+    35deg,
+    rgba(14, 125, 226, 1) 0%,
+    rgba(2, 0, 36, 1) 50%,
+    rgba(152, 4, 121, 1) 100%
+  );
 }
 
 nav {

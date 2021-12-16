@@ -38,6 +38,8 @@
               <a href="{% url 'fibonacci-calculator' %}" {% if request.path == "/fibonacci_calculator/" %}class="active"{% endif %}>حسابگر فیبوناچی</a>
             </li><li>
               <a href="{% url 'contact-me' %}" {% if request.path == "/contact/" %}class="active"{% endif %}>تماس با من</a>
+            </li><li>
+              <a href="{% url 'api-docs' %}" {% if "/api/" in request.path %}class="active"{% endif %}>APIs</a>
             </li>
           </ul>
         </div>
