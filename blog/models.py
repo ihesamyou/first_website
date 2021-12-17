@@ -19,28 +19,28 @@ class Article(models.Model):
     description = models.TextField(max_length=250)
     metatags = models.TextField(max_length=450, default=None, blank=True)
     image_1 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_1 = models.TextField(default=None, blank=True)
     image_2 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_2 = models.TextField(default=None, blank=True)
     image_3 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_3 = models.TextField(default=None, blank=True)
     image_4 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_4 = models.TextField(default=None, blank=True)
     image_5 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_5 = models.TextField(default=None, blank=True)
     image_6 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_6 = models.TextField(default=None, blank=True)
     image_7 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_7 = models.TextField(default=None, blank=True)
     image_8 = models.ImageField(
-        upload_to='article-images/', default=None, blank=True)
+        upload_to='article_images/', default=None, blank=True)
     paragraph_8 = models.TextField(default=None, blank=True)
 
     def get_jalalidatetime(self):

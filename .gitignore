@@ -1,3 +1,7 @@
+#Manually Added
+media/article_images/*
+media/profile_photos/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
