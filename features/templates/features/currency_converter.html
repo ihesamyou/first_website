@@ -1,4 +1,19 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <h1>Currency Converter Page</h1>
+    <article class="content-section article-section detail-article">
+        <div class="article-header">
+            <h4>تبدیلگر ارز</h4>
+        </div>
+        <hr style="border-bottom: 1px solid var(--border-lines);">
+        <p>در این قسمت میتوانید ریال را به ارز های دیگر تبدیل کنید.</p>
+        <form action="{% url 'currency-converter' %}" method="POST">
+            {% csrf_token %}
+            <fieldset class="form">
+                <p>ارز مورد نظر خود را انتخاب کنید.</p>
+                {{ form|crispy }}
+                <input class="btn btn-primary mb-3" type="submit" value="حساب کن">
+            </fieldset>
+        </form>
+    </article>
 {% endblock%}

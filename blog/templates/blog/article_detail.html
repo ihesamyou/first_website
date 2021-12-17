@@ -9,8 +9,10 @@
         <article class="content-section article-section detail-article">
             <div class="article-header">
                 <h4>{{ article.title }}</h4>
-                <a href="{% url 'profile' article.author %}"><img src="{{ article.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
-                <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                {% if article.author %}
+                    <a href="{% url 'profile' article.author %}"><img src="{{ article.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
+                    <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                {% endif %}
                 <span>{{ article.get_jalalidatetime }}</span>
             </div>
             <hr style="border-top: 1px solid var(--border-lines);">
@@ -84,7 +86,7 @@
                 <form action="{% url 'article-detail' article.pk %}" method='POST'>
                     {% csrf_token %}
                     {{ comment_form|crispy }}
-                    <input class="btn btn-info button"type="submit" value="ثبت">
+                    <input class="btn btn-primary button"type="submit" value="ثبت">
                 </form><br>
             {% else %}
                 <h5>برای ثبت نظر خود <a href="{% url 'login' %}">وارد شوید</a> و یا <a href="{% url 'register' %}">ثبت نام کنید</a>.</h5><br>
@@ -111,7 +113,7 @@
                                     <form action="{% url 'article-detail' article.pk node.pk %}" method="POST">
                                         {% csrf_token %}
                                         {{ comment_form|crispy }}
-                                        <input type="submit" value="ثبت" class="btn btn-info button">
+                                        <input type="submit" value="ثبت" class="btn btn-primary button">
                                     </form>
                                 {% endif %}
                             {% endif %}

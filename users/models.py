@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from PIL import Image
 
 
 class User(AbstractUser):
@@ -15,6 +16,13 @@ class Profile(models.Model):
     photo = models.ImageField(
         default='default_profile.png', upload_to='profile_photos')
     receive_updates = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        with Image.open(self.photo.path) as image:
+            if image.height > 225 or image.width > 225:
+                size = (225, 225)
+                image.resize(size, Image.ANTIALIAS).save(self.photo.path)
 
     def __str__(self):
         return f'{self.user.username} Profile'

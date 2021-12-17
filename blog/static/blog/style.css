@@ -106,7 +106,7 @@
 body {
   background: rgb(14, 125, 226);
   background: linear-gradient(
-    35deg,
+    90deg,
     rgba(14, 125, 226, 1) 0%,
     rgba(2, 0, 36, 1) 50%,
     rgba(152, 4, 121, 1) 100%
@@ -204,11 +204,15 @@ main {
 }
 
 .content-section span a {
-  color: var(--theme-color);
+  color: var(--text-color);
+}
+
+.content-section span a:hover {
+  color: var(--text-color);
 }
 
 .content-section span a:visited {
-  color: var(--theme-color);
+  color: var(--text-color);
 }
 
 .article-section {
@@ -308,7 +312,8 @@ aside {
 }
 
 .sm-user-image {
-  width: 3rem;
+  width: 80px;
+  height: 80px;
 }
 
 .comment {

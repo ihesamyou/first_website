@@ -37,9 +37,9 @@
             </li><li>
               <a href="{% url 'fibonacci-calculator' %}" {% if request.path == "/fibonacci_calculator/" %}class="active"{% endif %}>حسابگر فیبوناچی</a>
             </li><li>
-              <a href="{% url 'contact-me' %}" {% if request.path == "/contact/" %}class="active"{% endif %}>تماس با من</a>
-            </li><li>
               <a href="{% url 'api-docs' %}" {% if "/api/" in request.path %}class="active"{% endif %}>APIs</a>
+            </li><li>
+              <a href="{% url 'contact-me' %}" {% if request.path == "/contact/" %}class="active"{% endif %}>تماس با من</a>
             </li>
           </ul>
         </div>
@@ -47,11 +47,11 @@
         <div class="left-navbar">
             <ul>
               {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' user.username %}" {% if "profile" in request.path %}class="active"{% endif %}>پروفایل</a>
+                <li><a href="{% url 'profile' user.username %}" {% if "profile" in request.path %}class="active"{% endif %}>حساب کاربری</a>
                 </li><li style="cursor: default;">/</li><li><a href="{% url 'logout' %}" {% if request.path == "/logout/" %}class="active"{% endif %}>خروج</a></li>
               {% else %}
                 <li><a href="{% url 'login' %}" {% if request.path == "/login/" %}class="active"{% endif %}>ورود</a>
-                </li><li style="cursor: default;">/</li><li><a href="{% url 'register' %}" {% if request.path == "/register/" %}class="active"{% endif %}>ثبت نام</a></li>
+                </li><li style="cursor: default;">/</li><li><a href="{% url 'register' %}" {% if request.path == "/register/" %}class="active"{% endif %}>عضویت</a></li>
               {% endif %}
             </ul>
         </div>  

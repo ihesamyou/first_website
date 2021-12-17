@@ -11,7 +11,9 @@
                 <article class="content-section article-section">
                     <div class="article-header">
                         <h4><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
-                        <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                        {% if article.author %}
+                            <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                        {% endif %}
                         <span>{{ article.get_jalalidatetime }}</span>
                     </div>
                     <hr style="border-top: 1px solid rgb(179, 179, 179);">
