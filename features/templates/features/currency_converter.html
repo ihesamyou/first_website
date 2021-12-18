@@ -10,10 +10,13 @@
         <form action="{% url 'currency-converter' %}" method="POST">
             {% csrf_token %}
             <fieldset class="form">
-                <p>ارز مورد نظر خود را انتخاب کنید.</p>
+                <p>ارز مورد نظر خود را انتخاب و مقدار ریالی مورد نظر را وارد کنید.</p>
                 {{ form|crispy }}
                 <input class="btn btn-primary mb-3" type="submit" value="حساب کن">
             </fieldset>
+            {% if result %}
+                <p>{{ result }}</p>
+            {% endif %}
         </form>
     </article>
 {% endblock%}
