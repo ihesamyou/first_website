@@ -85,9 +85,19 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+        labels = {
+            'username': 'نام کاربری',
+            'first_name': 'نام',
+            'last_name': 'نام خانوادگی',
+            'email': 'ایمیل'
+        }
 
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['photo', 'receive_updates']
+        labels = {
+            'photo': 'عکس',
+            'receive_updates': 'دریافت آپدیت ها'
+        }
