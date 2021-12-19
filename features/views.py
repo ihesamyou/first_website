@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import FibonacciIndex, FibonacciUntil, RialForm
+from .forms import FibonacciIndex, FibonacciUntil, RialForm, CurrencyForm
 from .fibonacci_sequence import fibonacci_index, fibonacci_until
 from django.core.cache import cache
 
@@ -32,26 +32,43 @@ def fibonacci(request):
 
 def currency_converter(request):
     """
-    Converts rial to other currencies and displays the number.
-    Uses Cached currencies data to do calculations.
+    A View with two forms. r_form is used for converting rial to other currencies and 
+    c_form is used for converting other currencies to rial.
+    since fields are not required in our forms, we check which of our forms are populated
+    after form validation. context dictionary is populated according to conditionals.
     """
 
     if request.method == 'POST':
-        form = RialForm(request.POST)
+        r_form = RialForm(request.POST)
+        c_form = CurrencyForm(request.POST)
+        context = {}
 
-        if form.is_valid():
-            currency_name = form.cleaned_data['selected_currency']
-            rate = cache.get(currency_name)
-            result = form.cleaned_data['rial']/rate
+        if r_form.is_valid() and c_form.is_valid():
+            if r_form.cleaned_data['rial_amount']:
+                r_selected_currency = r_form.cleaned_data['r_selected_currency']
+                r_rate = cache.get(r_selected_currency)
+                r_input = r_form.cleaned_data['rial_amount']
+                r_answer = r_input/r_rate
+                r_result = f"{r_input} ریال معادل {r_answer:.2f} {r_selected_currency} است.<br> هر {r_selected_currency} معادل {r_rate} ریال است."
+                context['r_result'] = r_result
 
-            context = {
-                'result': result,
-                'form': form
-            }
-            return render(request, 'features/fibonacci.html', context)
+            if c_form.cleaned_data['currency_amount']:
+                c_selected_currency = c_form.cleaned_data['c_selected_currency']
+                c_rate = cache.get(c_selected_currency)
+                c_input = c_form.cleaned_data['currency_amount']
+                c_answer = c_input*c_rate
+                c_result = f"{c_input:.2f} {c_selected_currency} معادل {int(c_answer)} ریال است.<br> هر {c_selected_currency} معادل {c_rate} ریال است."
+                context['c_result'] = c_result
+
+            context['r_form'] = r_form
+            context['c_form'] = c_form
+            return render(request, 'features/currency_converter.html', context)
     else:
-        form = RialForm()
-        context = {
-            'form': form
-        }
+        r_form = RialForm()
+        c_form = CurrencyForm()
+
+    context = {
+        'r_form': r_form,
+        'c_form': c_form
+    }
     return render(request, 'features/currency_converter.html', context)

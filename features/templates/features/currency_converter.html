@@ -11,11 +11,23 @@
             {% csrf_token %}
             <fieldset class="form">
                 <p>ارز مورد نظر خود را انتخاب و مقدار ریالی مورد نظر را وارد کنید.</p>
-                {{ form|crispy }}
+                {{ r_form|crispy }}
                 <input class="btn btn-primary mb-3" type="submit" value="حساب کن">
             </fieldset>
-            {% if result %}
-                <p>{{ result }}</p>
+            {% if r_result %}
+                {% autoescape off %}
+                    <p>{{ r_result }}</p>
+                {% endautoescape %}
+            {% endif %}
+            <fieldset class="form">
+                <p>ارز مورد نظر خود را انتخاب و مقدار مورد نظر را وارد کنید.</p>
+                {{ c_form|crispy }}
+                <input class="btn btn-primary mb-3" type="submit" value="حساب کن">
+            </fieldset>
+            {% if c_result %}
+                {% autoescape off %}
+                    <p>{{ c_result }}</p>
+                {% endautoescape %}
             {% endif %}
         </form>
     </article>

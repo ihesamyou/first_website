@@ -10,7 +10,11 @@ def update_prices():
 
     if prices:
         for name, price in prices.items():
-            old_price = Currency.objects.get(name=name)
-            old_price.price = price
-            old_price.save()
-            cache.set(old_price.name, old_price.price, None)
+            try:
+                old_price = Currency.objects.get(name=name)
+                old_price.price = price
+                old_price.save()
+                cache.set(name, price, None)
+            except Currency.DoesNotExist:
+                Currency.objects.create(name=name, price=price)
+                cache.set(name, price, None)

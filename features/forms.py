@@ -13,6 +13,20 @@ class FibonacciUntil(forms.Form):
 
 
 class RialForm(forms.Form):
-    rial = forms.FloatField(label='مقدار (ریال)')
-    selected_currency = forms.ModelChoiceField(
-        queryset=Currency.objects.all(), label='ارز')
+    rial_amount = forms.IntegerField(label='مقدار (ریال)', required=False,
+                                     max_value=99999999999999999999999999999999999999,
+                                     error_messages={
+                                         'max_value': 'مقدار ورودی بیش از حد بزرگ است.'}
+                                     )
+    r_selected_currency = forms.ModelChoiceField(
+        queryset=Currency.objects.all(), label='ارز', required=False)
+
+
+class CurrencyForm(forms.Form):
+    c_selected_currency = forms.ModelChoiceField(
+        queryset=Currency.objects.all(), label='ارز', required=False)
+    currency_amount = forms.FloatField(label='مقدار ارز مورد نظر', required=False,
+                                       max_value=99999999999999999999999999999999999999,
+                                       error_messages={
+                                           'max_value': 'مقدار ورودی بیش از حد بزرگ است.'}
+                                       )
