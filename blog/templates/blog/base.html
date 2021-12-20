@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Hossein Yousefian">
     {% autoescape off %}
       {% block metatags %}
       {% endblock %}
@@ -14,13 +13,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}"/>
-    <link rel="icon"href="{% static 'blog/favicon.ico' %}">
+    <link rel="icon" href="{% static 'blog/favicon.png' %}">
     
-    {% if title %}
-        <title>{{ title }}</title>
-    {% else %}
-        <title>Welcome To My Website</title>
-    {% endif %}
+    {% block title %}
+    {% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark">
@@ -48,7 +44,7 @@
             <ul>
               {% if user.is_authenticated %}
                 <li><a href="{% url 'profile' user.username %}" {% if "profile" in request.path %}class="active"{% endif %}>حساب کاربری</a>
-                </li><li style="cursor: default;">/</li><li><a href="{% url 'logout' %}" {% if request.path == "/logout/" %}class="active"{% endif %}>خروج</a></li>
+                </li><li style="cursor: default;">/</li><li><a href="{% url 'logout' %}">خروج</a></li>
               {% else %}
                 <li><a href="{% url 'login' %}" {% if request.path == "/login/" %}class="active"{% endif %}>ورود</a>
                 </li><li style="cursor: default;">/</li><li><a href="{% url 'register' %}" {% if request.path == "/register/" %}class="active"{% endif %}>عضویت</a></li>
