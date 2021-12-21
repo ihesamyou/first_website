@@ -20,40 +20,42 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="material-icons" style="color: white;">menu</span>
-        </button>
-      
-        <div class="right-navbar collapse navbar-collapse" id="navbarSupportedContent">
-          <ul>
-            <li>
-              <a href="{% url 'home-page' %}" {% if request.path == "/" %}class="active"{% endif %}>بلاگ</a>
-            </li><li>
-              <a href="{% url 'currency-converter' %}" {% if request.path == "/currency_converter/" %}class="active"{% endif %}>تبدیلگر ارز</a>
-            </li><li>
-              <a href="{% url 'fibonacci-calculator' %}" {% if request.path == "/fibonacci_calculator/" %}class="active"{% endif %}>حسابگر فیبوناچی</a>
-            </li><li>
-              <a href="{% url 'api-docs' %}" {% if "/api/" in request.path %}class="active"{% endif %}>APIs</a>
-            </li><li>
-              <a href="{% url 'contact-me' %}" {% if request.path == "/contact/" %}class="active"{% endif %}>تماس با من</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="left-navbar">
+        <div class="navbar-wrap">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="material-icons" style="color: white;">menu</span>
+          </button>
+        
+          <div class="right-navbar collapse navbar-collapse" id="navbarSupportedContent">
             <ul>
-              {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' user.username %}" {% if "profile" in request.path %}class="active"{% endif %}>حساب کاربری</a>
-                </li><li style="cursor: default;">/</li><li><a href="{% url 'logout' %}">خروج</a></li>
-              {% else %}
-                <li><a href="{% url 'login' %}" {% if request.path == "/login/" %}class="active"{% endif %}>ورود</a>
-                </li><li style="cursor: default;">/</li><li><a href="{% url 'register' %}" {% if request.path == "/register/" %}class="active"{% endif %}>عضویت</a></li>
-              {% endif %}
+              <li>
+                <a href="{% url 'home-page' %}" {% if request.path == "/" %}class="active"{% endif %}>بلاگ</a>
+              </li><li>
+                <a href="{% url 'currency-converter' %}" {% if request.path == "/currency_converter/" %}class="active"{% endif %}>تبدیلگر ارز</a>
+              </li><li>
+                <a href="{% url 'fibonacci-calculator' %}" {% if request.path == "/fibonacci_calculator/" %}class="active"{% endif %}>حسابگر فیبوناچی</a>
+              </li><li>
+                <a href="{% url 'api-docs' %}" {% if "/api/" in request.path %}class="active"{% endif %}>APIs</a>
+              </li><li>
+                <a href="{% url 'contact-me' %}" {% if request.path == "/contact/" %}class="active"{% endif %}>تماس با من</a>
+              </li>
             </ul>
-        </div>  
+          </div>
+
+          <div class="left-navbar">
+              <ul>
+                {% if user.is_authenticated %}
+                  <li><a href="{% url 'profile' user.username %}" {% if "profile" in request.path %}class="active"{% endif %}>حساب کاربری</a>
+                  </li><li style="cursor: default;">/</li><li><a href="{% url 'logout' %}">خروج</a></li>
+                {% else %}
+                  <li><a href="{% url 'login' %}" {% if request.path == "/login/" %}class="active"{% endif %}>ورود</a>
+                  </li><li style="cursor: default;">/</li><li><a href="{% url 'register' %}" {% if request.path == "/register/" %}class="active"{% endif %}>عضویت</a></li>
+                {% endif %}
+              </ul>
+          </div>  
+        </div>
     </nav>
     {% if messages %}
-      <div class="messages">
+      <div class="message">
           {% for message in messages %}
             <p class="alert alert-{{ message.tags }}">{{ message }}</p>
           {% endfor %}
@@ -63,6 +65,11 @@
       {% block content %}
       {% endblock %}
     </main>
+    <footer>
+      <div class="footer-content">
+        <small>تمامی حقوق برای Hossein Yousefian محفوظ است.</small>
+      </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

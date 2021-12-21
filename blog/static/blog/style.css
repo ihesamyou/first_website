@@ -37,13 +37,19 @@ nav {
   box-shadow: 0px 7px 25px 0px rgba(0, 0, 0, 0.3);
 }
 
+.navbar-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .fixed {
   position: sticky;
   top: 0;
 }
 
 .right-navbar {
-  margin: 0.4rem 2.5rem 0.4rem 0.7rem;
+  margin: 0.2rem 2.5rem 0.2rem 0.7rem;
 }
 
 .right-navbar ul li {
@@ -51,7 +57,7 @@ nav {
 }
 
 .left-navbar {
-  margin: 0.4rem 0.7rem 0.4rem 4rem;
+  margin: 0.2rem 0.7rem 0.2rem 4rem;
 }
 
 .left-navbar li {
@@ -69,7 +75,7 @@ nav ul li {
 
 nav li a {
   color: var(--text-color);
-  padding: 0.5rem;
+  padding: 0.3rem 0.6rem;
 }
 
 nav li a:visited {
@@ -84,7 +90,7 @@ nav li a.active {
   border-radius: 5px;
 }
 
-.messages {
+.message {
   margin: 2rem auto 1rem;
   width: 70%;
 }
@@ -301,6 +307,20 @@ aside {
   direction: ltr;
 }
 
+footer {
+  width: 100%;
+  margin-top: 2rem;
+  border-top: 2px solid var(--theme-color);
+  height: 30px;
+}
+
+.footer-content {
+  height: 100%;
+  background-color: var(--nav-bg);
+  color: rgb(129, 129, 129);
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   main {
     margin: 1.5rem 0.4rem 1.5rem;
@@ -381,5 +401,17 @@ aside {
   .profile-comments {
     margin: 2rem auto;
     width: 100%;
+  }
+}
+
+@media (min-width: 1441px) {
+  .navbar-wrap {
+    width: 70%;
+    margin: auto;
+  }
+
+  main {
+    width: 70%;
+    margin: 2rem auto;
   }
 }
