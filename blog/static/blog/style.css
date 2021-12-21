@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 :root {
-  font-size: 18px;
+  font-size: 17px;
   direction: rtl;
   overflow-wrap: break-word;
   --theme-color: rgb(122, 214, 2);
-  --nav-bg: black;
+  --nav-bg: rgb(20, 20, 20);
   --nav-hover-bg: rgb(71, 71, 71);
   --text-color: white;
   --border-lines: rgb(151, 151, 151);
@@ -34,19 +34,28 @@ nav {
   background-color: var(--nav-bg);
   color: var(--text-color);
   border-bottom: 7px solid var(--theme-color);
-  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 7px 25px 0px rgba(0, 0, 0, 0.3);
+}
+
+.fixed {
+  position: sticky;
+  top: 0;
 }
 
 .right-navbar {
-  margin: 0.5rem 1.6rem 0.5rem 0.7rem;
+  margin: 0.4rem 2.5rem 0.4rem 0.7rem;
+}
+
+.right-navbar ul li {
+  margin: 0 1.2rem;
 }
 
 .left-navbar {
-  margin: 0.5rem 0.7rem 0.5rem 3rem;
+  margin: 0.4rem 0.7rem 0.4rem 4rem;
 }
 
 .left-navbar li {
-  margin-left: 0.4rem;
+  margin: 0 0.2rem;
 }
 
 nav ul {
@@ -58,13 +67,9 @@ nav ul li {
   display: inline-block;
 }
 
-.right-navbar ul li {
-  margin: 0 0.9rem;
-}
-
 nav li a {
   color: var(--text-color);
-  padding: 0.7rem;
+  padding: 0.5rem;
 }
 
 nav li a:visited {
@@ -77,12 +82,6 @@ nav li a.active {
   background-color: var(--nav-hover-bg);
   text-decoration: none;
   border-radius: 5px;
-}
-
-.fixed {
-  position: sticky;
-  width: 100%;
-  top: 0;
 }
 
 .messages {
