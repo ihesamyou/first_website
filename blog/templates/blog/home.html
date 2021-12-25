@@ -3,42 +3,52 @@
 {% block metatags %}
     <meta name="author" content="حسین یوسفیان">
     <meta name="description" content="وب سایتی برای علاقه‌مندان به تکنولوژی، برنامه‌نویسی، مباحث مالی و فلسفه">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="تکنولوژی, برنامه‌نویسی, مباحث مالی, فلسفه">
+{% endblock %}
+{% block title %}
+<title>وبلاگ برنامه نویسی</title>
 {% endblock %}
 {% block content %}
-    <div>
-        {% for article in articles %}
-            {% autoescape off %}
-                <article class="content-section article-section">
-                    <div class="article-header">
-                        <h4><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
-                        {% if article.author %}
-                            <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+    <div id="home-container">
+        <h4 id="home-title">جدیدترین مقالات</h4>
+        <div id="articles-container">
+            {% for article in articles %}
+                {% autoescape off %}
+                    <article class="content-section article-section">
+                        <div class="article-header">
+                            <h4><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
+                            {% if article.author %}
+                                <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                            {% endif %}
+                            <span>{{ article.get_jalalidatetime }}</span>
+                        </div>
+                        <hr>
+                        <p class="description">{{ article.description }}</p>
+                        {% if article.image_1 %}
+                            <br>
+                            <img class="article-image"  src="{{ article.image_1.url }}" alt="article image">
                         {% endif %}
-                        <span>{{ article.get_jalalidatetime }}</span>
-                    </div>
-                    <hr style="border-top: 1px solid rgb(179, 179, 179);">
-                    <p class="description">{{ article.description }}</p>
-                    {% if article.image_1 %}
-                        <br>
-                        <img class="article-image"  src="{{ article.image_1.url }}" alt="image">
-                    {% endif %}
-                </article>
-            {% endautoescape %}
-        {% endfor %}
-    </div>
-    <aside>
-        <div class="content-section info">
-            <a href="{% url 'contact-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo"></a><a href="{% url 'contact-me' %}">حسین یوسفیان</a><br>
-            <p>به وب سایت من خوش آمدید. من در زمینه برنامه نویسی فعالیت میکنم و به موضوعات تکنولوژی، مالی، کلان داده و فلسفه علاقه مندم.</p>
+                    </article>
+                {% endautoescape %}
+            {% endfor %}
         </div>
-        {% if quote.quote %}
-            <div class="content-section quote-section">
-                <span>نقل قول:</span><br><br>
-                <q>‌{{ quote.quote }}</q><br><br>
-                <span>-{{ quote.author }}</span>
+        <aside>
+            <h5 id="side-title">معرفی</h5>
+            <div id="side-container">
+                <div class="content-section info-section">
+                    <a href="{% url 'contact-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo"></a>
+                    <a href="{% url 'contact-me' %}">حسین یوسفیان</a><br>
+                    <span>به وب سایت من خوش آمدید.</span>
+                    <span>من در زمینه برنامه نویسی فعالیت میکنم و به موضوعات تکنولوژی، مالی، کلان داده و فلسفه علاقه مندم.</span>
+                </div>
+                {% if quote.quote %}
+                    <div class="content-section quote-section">
+                        <span>نقل قول:</span><br><br>
+                        <q>‌{{ quote.quote }}</q><br><br>
+                        <span>-{{ quote.author }}</span>
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
-        
-    </aside>
+        </aside>
+    </div>
 {% endblock%}
