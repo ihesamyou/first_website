@@ -88,6 +88,7 @@ nav li a.active {
   background-color: var(--nav-hover-bg);
   text-decoration: none;
   border-radius: 5px;
+  transition: color 0.4s ease-out, background-color 0.4s ease-out;
 }
 
 .message {
@@ -141,8 +142,13 @@ aside {
   border-bottom: 5px solid var(--theme-color);
   background-color: var(--content-bg);
   border-radius: 7px;
-  padding: 1rem;
+  padding: 1.2rem 2rem;
+  margin-top: 2.5rem;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.content-section:first-child {
+  margin-top: 0;
 }
 
 .content-section p {
@@ -155,36 +161,29 @@ aside {
 
 .content-section a:hover {
   color: var(--theme-color);
+  transition: color 0.4s ease-out;
 }
 
 .content-section a:visited {
   color: var(--theme-color);
 }
 
-.article-section {
-  padding: 1.2rem 2rem;
-  margin-top: 2.5rem;
-}
-
-.article-section:first-child {
-  margin-top: 0;
-}
-
-.article-header a {
+.content-header a {
   color: var(--text-color);
   display: inline-block;
 }
 
-.article-header a:visited {
+.content-header a:visited {
   color: var(--text-color);
 }
 
-.article-header a:hover {
+.content-header a:hover {
   color: var(--theme-color);
   text-decoration: none;
+  transition: color 0.4s ease-out;
 }
 
-.article-header span {
+.content-header span {
   margin-right: 1.5rem;
   font-size: 15px;
   color: #ececec;
@@ -207,6 +206,7 @@ hr {
 
 .info-section {
   text-align: center;
+  padding: 1rem;
 }
 
 .info-section img {
@@ -232,9 +232,11 @@ hr {
 .info-section a:hover {
   color: var(--theme-color);
   text-decoration: none;
+  transition: color 0.4s ease-out;
 }
 
 .quote-section {
+  padding: 1rem;
   margin-top: 2rem;
   text-align: justify;
 }
@@ -245,7 +247,7 @@ hr {
   justify-content: space-evenly;
 }
 
-.detail-article {
+.single-content {
   width: 85%;
   margin: auto;
 }
@@ -284,6 +286,7 @@ hr {
 .comment span a:hover {
   color: var(--theme-color);
   text-decoration: none;
+  transition: color 0.4s ease-out;
 }
 
 .button {
@@ -390,20 +393,45 @@ footer {
   }
 }
 
+/* In 767px and lower, right-navbar is moved to menu button. */
 @media (max-width: 767px) {
   .right-navbar ul li {
     display: block;
-    margin: 0.7rem 0;
+    margin: 0 0 1rem;
   }
 
-  .left-navbar ul {
-    display: block;
+  main {
+    margin: 1.5rem 0.5rem 2rem;
+  }
+
+  .content-section {
+    padding: 1rem 1rem;
+  }
+
+  .single-content {
+    width: 100%;
+  }
+  .description {
+    margin: 0 0.5rem;
+  }
+
+  .left-navbar {
+    position: fixed;
+    left: 0;
   }
 }
 
 @media (max-width: 520px) {
   #side-container {
     flex-direction: column;
+  }
+
+  .left-navbar {
+    margin-left: 0.3rem;
+  }
+
+  .left-navbar ul li {
+    margin: 0 0;
   }
 }
 

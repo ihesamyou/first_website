@@ -2,11 +2,8 @@
 {% load static %}
 {% block metatags %}
     <meta name="author" content="حسین یوسفیان">
-    <meta name="description" content="وب سایتی برای علاقه‌مندان به تکنولوژی، برنامه‌نویسی، مباحث مالی و فلسفه">
-    <meta name="keywords" content="تکنولوژی, برنامه‌نویسی, مباحث مالی, فلسفه">
-{% endblock %}
-{% block title %}
-<title>وبلاگ برنامه نویسی</title>
+    <meta name="description" content="وب سایتی برای علاقه مندان به تکنولوژی، برنامه نویسی، مباحث مالی">
+    <meta name="keywords" content="تکنولوژی, برنامه نویسی, مباحث مالی">
 {% endblock %}
 {% block content %}
     <div id="home-container">
@@ -14,8 +11,8 @@
         <div id="articles-container">
             {% for article in articles %}
                 {% autoescape off %}
-                    <article class="content-section article-section">
-                        <div class="article-header">
+                    <article class="content-section">
+                        <div class="content-header">
                             <h4><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
                             {% if article.author %}
                                 <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
@@ -36,7 +33,7 @@
             <h5 id="side-title">معرفی</h5>
             <div id="side-container">
                 <div class="content-section info-section">
-                    <a href="{% url 'contact-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="photo"></a>
+                    <a href="{% url 'contact-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="author photo"></a>
                     <a href="{% url 'contact-me' %}">حسین یوسفیان</a><br>
                     <span>به وب سایت من خوش آمدید.</span>
                     <span>من در زمینه برنامه نویسی فعالیت میکنم و به موضوعات تکنولوژی، مالی، کلان داده و فلسفه علاقه مندم.</span>

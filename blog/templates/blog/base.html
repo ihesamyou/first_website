@@ -16,6 +16,11 @@
   <link rel="icon" href="{% static 'blog/favicon.png' %}">
   
   {% block title %}
+    {% if title %}
+      {{ title }}
+    {% else %}
+      <title>برنامه نویسی و مباحث مالی </title>
+    {% endif %}
   {% endblock %}
 </head>
 <body>
@@ -67,7 +72,7 @@
   </main>
   <footer>
     <div class="footer-content">
-      <small>تمامی حقوق برای Hossein Yousefian محفوظ است.</small>
+      <small>تمامی حقوق سایت برای Hossein Yousefian محفوظ است.</small>
     </div>
   </footer>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
