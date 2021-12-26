@@ -10,13 +10,17 @@
 {% block content %}
     {% autoescape off %}
         <article class="content-section single-content">
+            <h4>{{ article.title }}</h4>
             <div class="content-header">
-                <h4>{{ article.title }}</h4>
                 {% if article.author %}
                     <a href="{% url 'profile' article.author %}"><img src="{{ article.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="author photo"></a>
-                    <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                    <div class="vertical-switcher">
+                        <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                {% else %}
+                    <div class="vertical-switcher">
                 {% endif %}
-                <span>{{ article.get_jalalidatetime }}</span>
+                        <span>{{ article.get_jalalidatetime }}</span>
+                    </div>
             </div>
             <hr style="border-top: 1px solid var(--border-lines);">
             <p class="description">{{ article.description }}</p>

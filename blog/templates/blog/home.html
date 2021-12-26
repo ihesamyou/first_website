@@ -12,12 +12,14 @@
             {% for article in articles %}
                 {% autoescape off %}
                     <article class="content-section">
+                        <h4 class="content-header"><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
                         <div class="content-header">
-                            <h4><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
-                            {% if article.author %}
-                                <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
-                            {% endif %}
-                            <span>{{ article.get_jalalidatetime }}</span>
+                            <div class="vertical-switcher">
+                                {% if article.author %}
+                                    <span>نویسنده: <a href="{% url 'profile' article.author %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></span>
+                                {% endif %}
+                                <span>{{ article.get_jalalidatetime }}</span>
+                            </div>
                         </div>
                         <hr>
                         <p class="description">{{ article.description }}</p>
@@ -30,7 +32,6 @@
             {% endfor %}
         </div>
         <aside>
-            <h5 id="side-title">معرفی</h5>
             <div id="side-container">
                 <div class="content-section info-section">
                     <a href="{% url 'contact-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="author photo"></a>
