@@ -1,3 +1,4 @@
+from django.contrib.messages.api import success
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from .models import Article
@@ -7,6 +8,7 @@ from .models import Comment
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.views.generic.edit import UpdateView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 def home(request):
@@ -37,7 +39,8 @@ def article(request, pk, cm=None):
                 new_reply.author = request.user
                 new_reply.parent = Comment.objects.get(pk=cm)
                 new_reply.save()
-                messages.success(request, f'نظر شما با موفقیت ثبت شد.')
+                messages.success(
+                    request, f'نظر شما با موفقیت ثبت شد و پس از تایید مدیر سایت نمایش داده خواهد شد.')
                 return redirect('article-detail', pk)
 
         else:
@@ -49,7 +52,8 @@ def article(request, pk, cm=None):
                 new_comment.comment = comment_form.cleaned_data.get('comment')
                 new_comment.author = request.user
                 new_comment.save()
-                messages.success(request, f'نظر شما با موفقیت ثبت شد.')
+                messages.success(
+                    request, f'نظر شما با موفقیت ثبت شد و پس از تایید مدیر سایت نمایش داده خواهد شد.')
                 return redirect('article-detail', pk)
     else:
         comment_form = CommentForm()
@@ -66,18 +70,20 @@ def article(request, pk, cm=None):
     return render(request, 'blog/article_detail.html', context)
 
 
-class CommentUpdateView(UpdateView):
+class CommentUpdateView(SuccessMessageMixin, UpdateView):
     model = Comment
     fields = ['comment']
     template_name = 'blog/comment_update.html'
+    success_message = 'دیدگاه شما با موفقیت ویرایش شد.'
 
 
-class CommentDeleteView(DeleteView):
+class CommentDeleteView(SuccessMessageMixin, DeleteView):
     model = Comment
     fields = ['comment']
     template_name = 'blog/comment_delete.html'
 
     def get_success_url(self):
+        messages.success(self.request, 'دیدگاه شما با موفقیت حذف شد.')
         return reverse(article, kwargs={'pk': self.object.article.id})
 
 

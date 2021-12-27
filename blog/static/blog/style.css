@@ -198,6 +198,10 @@ aside {
   gap: 2rem;
 }
 
+.vertical-switcher span {
+  align-self: center;
+}
+
 hr {
   border-top: 1px solid rgb(179, 179, 179);
 }
@@ -263,48 +267,30 @@ hr {
   border: 1px solid var(--border-lines);
   border-radius: 6px;
   padding: 0.5rem;
-  margin: 0.5rem 0.5rem;
-}
-
-.comment span {
-  display: inline-block;
-  margin-right: 1.5rem;
+  margin: 0.5rem 0rem;
 }
 
 .comment p {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   border-top: 2px solid var(--theme-color);
   padding: 0.3rem;
 }
 
-.comment span a {
-  color: var(--text-color);
+.buttons-container {
+  display: flex;
+  gap: 1rem;
 }
 
-.comment span a:visited {
-  color: var(--text-color);
-}
-
-.comment span a:hover {
-  color: var(--theme-color);
-  text-decoration: none;
-  transition: color 0.4s ease-out;
+.button {
+  color: var(--text-color) !important;
+  padding: 0.3rem 0.7rem;
+  align-self: center;
 }
 
 .icons {
   padding: 2rem 6rem;
   display: flex;
   justify-content: space-evenly;
-}
-
-.button {
-  padding: 0.3rem 0.7rem 0.3rem 0.7rem;
-}
-
-.middle-content {
-  margin: 5vh auto;
-  padding: 1.5rem 2.5rem;
-  width: 60%;
 }
 
 .profile {
@@ -408,6 +394,11 @@ footer {
     margin: 0 0 1rem;
   }
 
+  .left-navbar {
+    position: fixed;
+    left: 0;
+  }
+
   main {
     margin: 1.5rem 0.5rem 2rem;
   }
@@ -423,13 +414,13 @@ footer {
   .single-content {
     width: 100%;
   }
+
   .description {
     margin: 0 0.5rem;
   }
 
-  .left-navbar {
-    position: fixed;
-    left: 0;
+  .comment {
+    margin: 0 0;
   }
 }
 
@@ -449,6 +440,14 @@ footer {
 
   .left-navbar ul li {
     margin: 0 0;
+  }
+
+  .buttons-container {
+    gap: 0.3rem;
+  }
+
+  .buttons-container a {
+    padding: 0.1rem 0.4rem;
   }
 }
 

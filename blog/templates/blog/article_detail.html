@@ -88,15 +88,15 @@
             {% if article.paragraph_8 %}
                 <p>{{ article.paragraph_8 }}</p>
             {% endif %}
-
+    {% endautoescape %}
             {% if user.is_authenticated %}
                 <form action="{% url 'article-detail' article.pk %}" method='POST'>
                     {% csrf_token %}
                     {{ comment_form|crispy }}
-                    <input class="btn btn-success button"type="submit" value="ثبت">
+                    <input class="btn btn-info button"type="submit" value="ثبت نظر">
                 </form><br>
             {% else %}
-                <h5>برای ثبت نظر خود <a href="{% url 'login' %}">وارد شوید</a> و یا <a href="{% url 'register' %}">ثبت نام کنید</a>.</h5><br>
+                <h5>برای ثبت نظر خود <a href="{% url 'login' %}">وارد شوید</a> و یا در سایت <a href="{% url 'register' %}">ثبت نام کنید</a>.</h5><br>
             {% endif %}
             {% if comments %}
                 <div>
@@ -104,23 +104,31 @@
                     <hr style="border-top: 1px solid var(--border-lines);">
                     {% recursetree comments %}
                         <div class="comment" id="comment{{node.id}}">
-                            <a href="{% url 'profile' node.author %}"><img src="{{ node.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
-                            <span><a href="{% url 'profile' node.author %}">{{ node.author.first_name }} {{ node.author.last_name }}</a></span><span>
-                            {{ node.get_jalalidatetime }}</span>
-                            {% if user.is_authenticated %}
-                                <a class="btn btn-secondary button" style="margin-right: 1.5rem;" href="{% url 'article-detail' article.id node.id %}#comment{{node.id}}">پاسخ</a>
-                                {% if user == node.author %}
-                                    <a class="btn btn-danger button" style="margin-right: 0.5rem;" href="{% url 'comment-delete' node.id %}">حذف</a>
-                                    <a class="btn btn-dark button" style="margin-right: 0.5rem;" href="{% url 'comment-update' node.id %}">ویرایش</a>
-                                {% endif %}
-                            {% endif %}
+                            <div class="content-header">
+                                <a href="{% url 'profile' node.author %}"><img src="{{ node.author.profile.photo.url }}" class="sm-user-image rounded-circle" alt="photo"></a>
+                                <div class="vertical-switcher">
+                                    <span><a href="{% url 'profile' node.author %}">{{ node.author.first_name }} {{ node.author.last_name }}</a></span><span>
+                                    {{ node.get_jalalidatetime }}</span>
+                                    {% if user.is_authenticated %}
+                                        <div class="buttons-container">
+                                            {% if user != node.author %}
+                                                <a class="btn btn-success button" href="{% url 'article-detail' article.id node.id %}#comment{{node.id}}">پاسخ</a>
+                                            {% endif %}
+                                            {% if user == node.author %}
+                                                <a class="btn btn-dark button" href="{% url 'comment-update' node.id %}">ویرایش</a>
+                                                <a class="btn btn-danger button" href="{% url 'comment-delete' node.id %}">حذف</a>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                             <p>{{ node.comment }}</p>
                             {% if user.is_authenticated %}
                                 {% if cm == node.id %}
                                     <form action="{% url 'article-detail' article.pk node.pk %}" method="POST">
                                         {% csrf_token %}
                                         {{ comment_form|crispy }}
-                                        <input type="submit" value="ثبت" class="btn btn-success button">
+                                        <input type="submit" value="ثبت پاسخ" class="btn btn-info button">
                                     </form>
                                 {% endif %}
                             {% endif %}
@@ -132,5 +140,4 @@
                 <div>
             {% endif %}
         </article>
-    {% endautoescape %}
 {% endblock %}

@@ -1,11 +1,12 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <form class="content-section middle-content" method="post">
+    <form class="content-section single-content" method="POST">
         {% csrf_token %}
         <h4>ویرایش دیدگاه</h4>
-        <hr style="border-top: 1px solid var(--border-lines);">
+        <hr>
         {{ form|crispy }}
-        <input style="margin: 1rem 0;" class="btn btn-info button" type="submit" value="ویرایش">
+        <input style="margin: 1rem 0;" class="btn btn-info button" type="submit" value="ویرایش نظر">
+        <a style="margin-right: 0.3em;" class="btn btn-dark button" href="{% url 'article-detail' comment.article.id %}">بازگشت</a>
     </form>
 {% endblock %}
