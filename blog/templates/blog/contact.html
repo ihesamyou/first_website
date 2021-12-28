@@ -4,19 +4,23 @@
 {% block metatags %}
     <meta name="keywords" content="ihosseinu">
 {% endblock %}
+{% block title %}
+    <title>تماس با من</title>
+{% endblock %}
 {% block content %}
-    <div class="content-section single-content info" style="padding: 1rem 6rem 3rem;">
-        <h4>میتوانید از طریق شبکه های زیر با من در ارتباط باشید</h4>
+    <div class="content-section single-content">
+        <h4 style="text-align: center;">میتوانید از طریق شبکه های زیر با من در ارتباط باشید</h4>
+        <hr>
         <div class="icons">
-            <a href="https://stackoverflow.com/users/16447651/hossein-yousefian" target="_blank"><img src="{% static 'blog/stackoverflow.png' %}" alt="stackoverflow link"></a>
+            <a href="https://github.com/ihosseinu" target="_blank"><img src="{% static 'blog/github.png' %}" class="rounded-circle" alt="github link" style="background-color: white; padding: 0.1em;"></a>
             <a href="https://www.linkedin.com/in/hossein-yousefian-2b228b213/" target="_blank"><img src="{% static 'blog/linkedin.png' %}" alt="linkedin link"></a>
-            <a href="https://github.com/ihosseinu" target="_blank"><img src="{% static 'blog/github.svg' %}" class="rounded-circle" alt="github link" style="background-color: white;"></a>
         </div>
-        <h4 style="margin-top: 2rem;">و یا در اینجا یک پیام بگذارید</h4>
-        <form action="{% url 'contact-me' %}" method="POST">
+        <h4 style="text-align: center; margin-top: 1rem;">و یا در اینجا یک پیام بگذارید</h4>
+        <hr>
+        <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <input type="submit" value="ثبت" class="btn btn-info button">
+            <input type="submit" value="ثبت پیام" class="btn btn-info button">
         </form>
 
     </div>

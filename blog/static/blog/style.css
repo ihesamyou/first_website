@@ -93,7 +93,7 @@ nav li a.active {
 
 main {
   min-height: calc(100vh - 9rem);
-  margin: 1.5rem 1rem 3rem;
+  margin: 2.5rem 1rem 3rem;
 }
 
 .messages {
@@ -288,9 +288,14 @@ hr {
 }
 
 .icons {
-  padding: 2rem 6rem;
+  padding: 2rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10rem;
+}
+
+.icons a img {
+  max-width: 120px;
 }
 
 .profile {
@@ -448,6 +453,10 @@ footer {
 
   .buttons-container a {
     padding: 0.1rem 0.4rem;
+  }
+
+  .icons {
+    gap: 2rem;
   }
 }
 
