@@ -3,7 +3,7 @@ from .models import User
 from .forms import ProfileEditForm, RegisterForm, UserEditForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from blog.models import Comment
+from blog.models import Comment, Article
 
 
 def register(request):
@@ -23,6 +23,7 @@ def profile(request, username):
     user_requested = get_object_or_404(User, username=username)
     context = {
         'user_requested': user_requested,
+        'articles': Article.objects.filter(author=user_requested),
         'comments': Comment.objects.filter(author=user_requested)
     }
     return render(request, 'users/profile.html', context)

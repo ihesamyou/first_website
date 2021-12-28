@@ -12,7 +12,7 @@
             {% for article in articles %}
                 {% autoescape off %}
                     <article class="content-section">
-                        <h4 class="content-header"><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
+                        <h4 class="white-link"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h4>
                         <div class="content-header">
                             <div class="vertical-switcher">
                                 {% if article.author %}
@@ -33,7 +33,7 @@
         </div>
         <aside>
             <div id="side-container">
-                <div class="content-section info-section">
+                <div class="content-section info-section white-link">
                     <a href="{% url 'contact-me' %}"><img src="{% static 'blog/my_photo.jpg' %}" class="rounded-circle" alt="author photo"></a>
                     <a href="{% url 'contact-me' %}">حسین یوسفیان</a><br>
                     <span>به وب سایت من خوش آمدید.</span>

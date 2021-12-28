@@ -233,20 +233,6 @@ hr {
   text-align: inherit;
 }
 
-.info-section a {
-  color: var(--text-color);
-}
-
-.info-section a:visited {
-  color: var(--text-color);
-}
-
-.info-section a:hover {
-  color: var(--theme-color);
-  text-decoration: none;
-  transition: color 0.4s ease-out;
-}
-
 .quote-section {
   padding: 1rem;
   margin-top: 2rem;
@@ -278,7 +264,7 @@ hr {
 
 .buttons-container {
   display: flex;
-  gap: 1rem;
+  gap: 0.7rem;
 }
 
 .button {
@@ -298,32 +284,46 @@ hr {
   max-width: 120px;
 }
 
-.profile {
-  margin: 5vh auto;
-  padding: 1.5rem 2.5rem;
-  width: 80%;
+.profile-container {
   display: grid;
   grid-template-areas:
-    "image   profile-info"
-    "comments   comments";
+    "profile-photo profile-info"
+    "articles articles"
+    "comments comments";
+  gap: 2rem;
+  align-items: center;
 }
 
-.profile img {
-  grid-area: image;
+.profile-container img {
+  grid-area: profile-photo;
+  max-width: 150px;
+  margin: 0 auto;
 }
 
 .profile-info {
   grid-area: profile-info;
-  margin: 3rem 1rem 0 0;
+}
+
+.profile-articles {
+  grid-area: articles;
 }
 
 .profile-comments {
   grid-area: comments;
-  margin-top: 3rem;
 }
 
-.answer {
-  direction: ltr;
+.white-link a {
+  color: var(--text-color);
+}
+
+.white-link a:visited {
+  color: var(--text-color);
+}
+
+.white-link a:hover {
+  color: var(--theme-color);
+  text-decoration: none;
+  transition: color 0.4s ease-out;
 }
 
 footer {
@@ -457,6 +457,14 @@ footer {
 
   .icons {
     gap: 2rem;
+  }
+
+  .profile-container {
+    grid-template-areas:
+      "profile-photo"
+      "profile-info"
+      "articles"
+      "comments";
   }
 }
 

@@ -49,7 +49,7 @@
         <div class="left-navbar">
             <ul>
               {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' user.username %}" {% if "profile" in request.path %}class="active"{% endif %}>حساب کاربری</a>
+                <li><a href="{% url 'profile' user.username %}" {% if user.username in request.path %}class="active"{% endif %}>حساب کاربری</a>
                 </li><li style="cursor: default;">/</li><li><a href="{% url 'logout' %}">خروج</a></li>
               {% else %}
                 <li><a href="{% url 'login' %}" {% if request.path == "/login/" %}class="active"{% endif %}>ورود</a>

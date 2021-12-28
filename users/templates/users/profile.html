@@ -1,37 +1,58 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <div class="content-section profile">
-        <img class="rounded-circle" src="{{ user_requested.profile.photo.url }}"></img>
-        <div class="profile-info">
-            <h6>نام:  {{ user_requested.first_name }}</h6>
-            <h6>نام خانوادگی: {{ user_requested.last_name }}</h6>
-            <h6>نام کاربری:   {{ user_requested.username }}</h6>
-            <h6>ایمیل:   {{ user_requested.email }}</h6>
-            {% if user_requested.profile.receive_updates %}
-                <h6>دریافت آپدیت های سایت:   بله</h6>
-            {% else %}
-                <h6>دریافت آپدیت های سایت:   خیر</h6>
+    <div class="content-section single-content">
+        <h5>پروفایل {{ user_requested.username }}</h5>
+        <hr>
+        <div class="profile-container">
+            <img class="rounded-circle" src="{{ user_requested.profile.photo.url }}"></img>
+            <div class="profile-info">
+                <h6>نام:  {{ user_requested.first_name }}</h6>
+                <h6>نام خانوادگی: {{ user_requested.last_name }}</h6>
+                <h6>نام کاربری:   {{ user_requested.username }}</h6>
+                {% if user == user_requested %}
+                <h6>ایمیل: {{ user_requested.email }}</h6>
+                    {% if user_requested.profile.receive_updates %}
+                        <h6>دریافت آپدیت های سایت: بله</h6>
+                    {% else %}
+                        <h6>دریافت آپدیت های سایت: خیر</h6>
+                    {% endif %}
+                    <a class="btn btn-info button" href="{% url 'profile-edit' %}">ویرایش اطلاعات</a>
+                {% endif %}
+            </div>
+            {% if articles %}
+                <div class="profile-articles">
+                    <h5>مقالات</h5>
+                    <hr>
+                    {% for article in articles %}
+                        <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if comments %}
+                <div class="profile-comments">
+                    <h5>دیدگاه ها</h5>
+                    <hr>
+                    {% for comment in comments %}
+                        <div class="comment">
+                            <div class="content-header">
+                                <div class="vertical-switcher">
+                                    <a href="{{ comment.get_absolute_url }}">دیدگاه {{ user_requested.first_name }} {{ user_requested.last_name }}</a>
+                                    <span>{{ comment.get_jalalidatetime }}</span>
+                                    {% if user.is_authenticated %}
+                                        {% if user == comment.author %}
+                                            <div class="buttons-container">
+                                                <a class="btn btn-dark button" style="margin-right: 0.5rem;" href="{% url 'comment-update' comment.id %}">ویرایش</a>
+                                                <a class="btn btn-danger button" style="margin-right: 0.5rem;" href="{% url 'comment-delete' comment.id %}">حذف</a>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p>{{ comment.comment }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             {% endif %}
         </div>
-        {% if comments %}
-            <div class="profile-comments">
-                <h5>دیدگاه ها</h5>
-                <hr style="border-top: 1px solid var(--border-lines);">
-                {% for comment in comments %}
-                    <div class="comment">
-                        <a href="{% url 'home-page' %}">Comment number {{comment.id}}</a>
-                        <span>{{ comment.get_jalalidatetime }}</span>
-                        {% if user.is_authenticated %}
-                            <a class="btn btn-secondary button" style="margin-right: 1.5rem;" href="{% url 'article-detail' article.id comment.id %}#comment{{comment.id}}">پاسخ</a>
-                            {% if user == comment.author %}
-                                <a class="btn btn-danger button" style="margin-right: 0.5rem;" href="{% url 'comment-delete' comment.id %}">حذف</a>
-                                <a class="btn btn-dark button" style="margin-right: 0.5rem;" href="{% url 'comment-update' comment.id %}">ویرایش</a>
-                            {% endif %}
-                        {% endif %}
-                        <p>{{ comment.comment }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
     </div>
 {% endblock %}
