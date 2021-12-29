@@ -16,7 +16,10 @@
                     {% else %}
                         <h6>دریافت آپدیت های سایت: خیر</h6>
                     {% endif %}
-                    <a class="btn btn-info button" href="{% url 'profile-edit' %}">ویرایش اطلاعات</a>
+                    <div class="buttons-container">
+                        <a class="btn btn-info button" href="{% url 'profile-edit' %}">ویرایش اطلاعات</a>
+                        <a class="btn btn-warning button" style="color: black !important;" href="{% url 'password_change' %}">تغییر رمز عبور</a>
+                    </div>
                 {% endif %}
             </div>
             {% if articles %}

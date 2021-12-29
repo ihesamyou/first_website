@@ -45,6 +45,7 @@ nav {
 
 .fixed {
   position: sticky;
+  z-index: 1;
   top: 0;
 }
 
@@ -99,6 +100,7 @@ main {
 .messages {
   margin: 1.5rem auto 0;
   width: 85%;
+  overflow: hidden;
 }
 
 .messages p {

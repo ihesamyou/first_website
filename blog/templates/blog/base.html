@@ -15,9 +15,9 @@
   <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}"/>
   <link rel="icon" href="{% static 'blog/favicon.png' %}">
   
-  {% block title %}
-    {% if title %}
-      {{ title }}
+  {% block page_title %}
+    {% if page_title %}
+      {{ page_title }}
     {% else %}
       <title>برنامه نویسی و مباحث مالی </title>
     {% endif %}

@@ -38,7 +38,7 @@ def profile_edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, f'پروفایل شما با موفقیت ویرایش شد.')
+            messages.success(request, f'پروفایل شما با موفقیت ویرایش گردید.')
             return redirect('profile', request.user)
     else:
         user_form = UserEditForm(instance=request.user)

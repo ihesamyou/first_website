@@ -82,6 +82,10 @@ class ConfirmPasswordReset(SetPasswordForm):
 
 
 class UserEditForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = None
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
@@ -94,10 +98,8 @@ class UserEditForm(forms.ModelForm):
 
 
 class ProfileEditForm(forms.ModelForm):
+    photo = forms.ImageField(label=None, widget=forms.FileInput)
+
     class Meta:
         model = Profile
         fields = ['photo', 'receive_updates']
-        labels = {
-            'photo': 'عکس',
-            'receive_updates': 'دریافت آپدیت ها'
-        }

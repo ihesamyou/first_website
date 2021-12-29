@@ -1,10 +1,10 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <form class="content-section middle-content" method="post">
+    <form class="content-section single-content" method="post">
         {% csrf_token %}
         <h4>ثبت نام</h4>
-        <hr style="border-top: 1px solid var(--border-lines);">
+        <hr>
         <p style="margin-bottom: 0.5rem;">برای استفاده از قابلیت های سایت یک حساب کاربری بسازید.</p>
         <p>اگر حساب کاربری دارید، <a href="{% url 'login' %}">وارد شوید</a>.</p>
         {{ form|crispy }}
