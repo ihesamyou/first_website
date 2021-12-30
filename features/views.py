@@ -44,7 +44,7 @@ def currency_converter(request):
         context = {}
 
         if r_form.is_valid() and c_form.is_valid():
-            if r_form.cleaned_data['rial_amount']:
+            if r_form.cleaned_data['rial_amount'] and r_form.cleaned_data['r_selected_currency']:
                 r_selected_currency = r_form.cleaned_data['r_selected_currency']
                 r_rate = cache.get(r_selected_currency)
                 r_input = r_form.cleaned_data['rial_amount']
@@ -52,7 +52,7 @@ def currency_converter(request):
                 r_result = f"{r_input} ریال معادل {r_answer:.2f} {r_selected_currency} است.<br> هر {r_selected_currency} معادل {r_rate} ریال است."
                 context['r_result'] = r_result
 
-            if c_form.cleaned_data['currency_amount']:
+            if c_form.cleaned_data['currency_amount'] and c_form.cleaned_data['c_selected_currency']:
                 c_selected_currency = c_form.cleaned_data['c_selected_currency']
                 c_rate = cache.get(c_selected_currency)
                 c_input = c_form.cleaned_data['currency_amount']

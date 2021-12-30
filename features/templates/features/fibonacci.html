@@ -1,16 +1,23 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% block metatags %}
+    <meta name="description" content="دنباله فیبوناچی را تا مقدار دلخواه به دست آورید.">
+    <meta name="keywords" content="دنباله فیبوناچی, حسابگر فیبوناچی">
+{% endblock %}
+{% block page_title %}
+    <title>حسابگر فیبوناچی</title>
+{% endblock %}
 {% block content %}
-    <article class="content-section article-section single-content">
-        <div class="article-header">
-            <h4>حسابگر فیبوناچی</h4>
-        </div>
-        <hr style="border-bottom: 1px solid var(--border-lines);">
-        <p>در این قسمت میتوانید دنباله فیبوناچی را تا مقدار دلخواه و یا تا nامین عدد این دنباله به دست آورید.</p>
-        <form action="/fibonacci_calculator/" method="POST">
+    <article class="content-section single-content">
+        <h4>حسابگر فیبوناچی</h4>
+        <hr>
+        <p>دنباله فیبوناچی یک دنباله معروف در ریاضیات است و بسیاری از الگوهای شکل گرفته در طبیعت از نسبت های این دنباله پیروی میکنند.
+        این دنباله با اعداد ۰ و ۱ شروع میشود و اعداد بعدی دنباله از جمع دو عدد قبلی به دست می آیند (۰، ۱، ۱، ۲، ۳، ۵، ۸، ۱۳، ۲۱، ۳۴، ...) .<br>
+        در این قسمت میتوانید دنباله فیبوناچی را تا nامین عدد این دنباله و یا تا یک مقدار دلخواه به دست آورید.</p>
+        <form action="/fibonacci_calculator/" method="POST" novalidate>
             {% csrf_token %}
             <fieldset class="form">
-                <p>برای به دست آوردن nامین عدد دنباله فیبوناچی یک عدد وارد کنید.</p>
+                <p>برای به دست آوردن دنباله فیبوناچی تا nامین عدد این دنباله یک عدد وارد کنید:</p>
                 {{ f_index|crispy }}
                 <input class="btn btn-info mb-3" type="submit" value="حساب کن">
                 <br>
@@ -19,8 +26,9 @@
                     <p class="answer">{{ index_answer }}</p>
                 {% endif %}
             </fieldset>
+            <hr>
             <fieldset class="form">
-                <p>برای به دست آوردن دنباله فیبوناچی تا مقدار دلخواه یک عدد وارد کنید.</p>
+                <p>برای به دست آوردن دنباله فیبوناچی تا مقدار دلخواه یک عدد وارد کنید:</p>
                 {{ f_until|crispy }}
                 <input class="btn btn-info mb-3" type="submit" value="حساب کن">
                 <br>

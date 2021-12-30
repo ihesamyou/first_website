@@ -11,19 +11,19 @@ from django.shortcuts import get_object_or_404
 
 
 def api_docs(request):
-    return render(request, template_name='api/api_docs.html')
+    return render(request, 'api/api_docs.html')
 
 
 def currency_docs(request):
-    return render(request, template_name='api/currency_docs.html')
+    return render(request, 'api/currency_docs.html')
 
 
 def fibonacci_docs(request):
-    return render(request, template_name='api/fibonacci_docs.html')
+    return render(request, 'api/fibonacci_docs.html')
 
 
 def quote_docs(request):
-    return render(request, template_name='api/quote_docs.html')
+    return render(request, 'api/quote_docs.html')
 
 
 class CurrencyAPIView(APIView):
@@ -54,7 +54,7 @@ class CurrencyConverterAPIView(APIView):
 
 class QuoteAPIView(APIView):
     def get(self, request):
-        quote = cache.get('quote')
+        quote = cache.get('quote').decode('UTF-8')
         if quote:
             return Response({"status": "success", "data": quote}, status=status.HTTP_200_OK)
         else:

@@ -1,9 +1,12 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% block page_title %}
+    <title>عضویت</title>
+{% endblock %}
 {% block content %}
     <form class="content-section single-content" method="post">
         {% csrf_token %}
-        <h4>ثبت نام</h4>
+        <h4>عضویت در سایت</h4>
         <hr>
         <p style="margin-bottom: 0.5rem;">برای استفاده از قابلیت های سایت یک حساب کاربری بسازید.</p>
         <p>اگر حساب کاربری دارید، <a href="{% url 'login' %}">وارد شوید</a>.</p>

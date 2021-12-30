@@ -1,32 +1,38 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% block metatags %}
+    <meta name="description" content="به آسانی ارزهای مختلف را به ریال و یا ریال را به دیگر ارزها تبدیل کنید.">
+    <meta name="keywords" content="تبدیلگر ارز, مبدل ارز, ماشین حساب ارزی, مبدل ریال">
+{% endblock %}
+{% block page_title %}
+    <title>تبدیلگر ارز</title>
+{% endblock %}
 {% block content %}
-    <article class="content-section article-section single-content>
-        <div class="article-header">
-            <h4>تبدیلگر ارز</h4>
-        </div>
-        <hr style="border-bottom: 1px solid var(--border-lines);">
-        <p>در این قسمت میتوانید ریال را به ارز های دیگر تبدیل کنید.</p>
-        <form action="{% url 'currency-converter' %}" method="POST">
+    <article class="content-section single-content">
+        <h4>تبدیلگر ارز</h4>
+        <hr>
+        <p>در این قسمت میتوانید ریال را به ارزهای مختلف و یا دیگر ارزها را به ریال تبدیل کنید.</p>
+        <form method="POST" novalidate>
             {% csrf_token %}
             <fieldset class="form">
-                <p>ارز مورد نظر خود را انتخاب و مقدار ریالی مورد نظر را وارد کنید.</p>
+                <p>برای تبدیل ریال به ارز مورد نظر، یک ارز را انتخاب و مقدار ریالی دلخواه را وارد کنید:</p>
                 {{ r_form|crispy }}
-                <input class="btn btn-primary mb-3" type="submit" value="حساب کن">
+                <input class="btn btn-info button" type="submit" value="حساب کن">
             </fieldset>
             {% if r_result %}
                 {% autoescape off %}
-                    <p>{{ r_result }}</p>
+                    <br><p>{{ r_result }}</p>
                 {% endautoescape %}
             {% endif %}
+            <hr>
             <fieldset class="form">
-                <p>ارز مورد نظر خود را انتخاب و مقدار مورد نظر را وارد کنید.</p>
+                <p>و یا برای تبدیل ارز مورد نظر به ریال، یک ارز را انتخاب و مقدار ارز دلخواه را وارد کنید:</p>
                 {{ c_form|crispy }}
-                <input class="btn btn-primary mb-3" type="submit" value="حساب کن">
+                <input class="btn btn-info button" type="submit" value="حساب کن">
             </fieldset>
             {% if c_result %}
                 {% autoescape off %}
-                    <p>{{ c_result }}</p>
+                    <br><p>{{ c_result }}</p>
                 {% endautoescape %}
             {% endif %}
         </form>
