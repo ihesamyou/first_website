@@ -1,13 +1,14 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <form class="content-section middle-content" method="post">
+    <form class="content-section single-content" method="post">
         {% csrf_token %}
         <h4>ورود</h4>
-        <hr style="border-top: 1px solid var(--border-lines);">
+        <hr>
         <p style="margin-bottom: 0.5rem;">برای استفاده از قابلیت های سایت وارد شوید.</p>
-        <p style="margin-bottom: 0;">اگر حساب کاربری ندارید، <a href="{% url 'register' %}">ثبت نام کنید</a>.</p><br>
+        <p style="margin-bottom: 0;">اگر حساب کاربری ندارید، <a href="{% url 'register' %}">عضو شوید</a>.</p><br>
         {{ form|crispy }}
         <input style="margin: 1rem 0;" class="btn btn-info button" type="submit" value="ورود">
+        <small style="margin-right: 1rem;"><a href="{% url 'password_reset' %}">فراموشی رمز عبور</a></small>
     </form>
 {% endblock %}
