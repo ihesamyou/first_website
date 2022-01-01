@@ -8,6 +8,7 @@ from features.models import Currency
 from django.core.cache import cache
 from features.fibonacci_sequence import fibonacci_until, fibonacci_index
 from django.shortcuts import get_object_or_404
+import json
 
 
 def api_docs(request):
@@ -54,11 +55,12 @@ class CurrencyConverterAPIView(APIView):
 
 class QuoteAPIView(APIView):
     def get(self, request):
-        quote = cache.get('quote').decode('UTF-8')
+        quote = cache.get('quote')
+        quote_author = cache.get('quote_author')
         if quote:
-            return Response({"status": "success", "data": quote}, status=status.HTTP_200_OK)
+            return Response({"status": "success", "data": {"quote": quote, "quote_author": quote_author}}, status=status.HTTP_200_OK)
         else:
-            return Response({"status": "error"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"status": "error", "data": "quote API currently unavailable."}, status=status.HTTP_404_NOT_FOUND)
 
 
 class FibonacciIndexAPIView(APIView):

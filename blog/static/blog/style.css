@@ -342,6 +342,17 @@ footer {
   text-align: center;
 }
 
+code {
+  display: flex;
+  direction: ltr;
+  text-align: left;
+  background-color: rgb(39, 39, 39);
+  color: rgb(184, 184, 184);
+  border-radius: 7px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
 @media (max-width: 1023px) {
   .right-navbar {
     margin: 0.2rem 1rem 0.2rem 0.5rem;

@@ -2,16 +2,53 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block metatags %}
-    <meta name="keywords" content="ihosseinu">
+    <meta name="keywords" content="‌api فیبوناچی, api حسابگر فیبوناچی">
+    <meta name="description" content="دنباله فیبوناچی را به آسانی با استفاده از این api به دست آورید.">
+{% endblock %}
+{% block page_title %}
+    <title>API حسابگر فیبوناچی</title>
 {% endblock %}
 {% block content %}
-    <div class="content-section single-content" style="padding: 1rem 6rem 3rem;">
-        <h4>APIs</h4>
-        <hr style="border-top: 1px solid var(--border-lines);">
-        <p class="api">این سایت دارای ۳ api برای استفاده توسعه دهندگان است:<br><br>
-            <a style="color: var(--theme-color);" href="#"><h4>API ارزها</h4></a><br>
-            <a style="color: var(--theme-color);" href="#"><h4>API نقل قول</h4></a><br>
-            <a style="color: var(--theme-color);" href="#"><h4>API فیبوناچی</h4></a>
-        </p>
+    <div class="content-section single-content">
+        <h4>API حسابگر فیبوناچی</h4>
+        <hr>
+        <p>برای به دست آوردن دنباله فیبوناچی تا nامین عدد میتوانید از آدرس "wwww.ihosseinu.ir/api/fibonacci_index/index" استفاده کنید. مثال:</p>
+        <code style="margin-bottom: 1rem;">
+            curl -L https://www.ihosseinu.ir/api/fibonacci_index/10<br>
+            >>> {
+                "status": "success",
+                "data": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    3,
+                    5,
+                    8,
+                    13,
+                    21,
+                    34]
+            }
+        </code>
+        <p style="margin-top: 3rem;">و یا برای به دست آوردن دنباله فیبوناچی تا عدد مورد نظر میتوانید از آدرس "www.ihosseinu.ir/api/fibonacci_until/number" استفاده کنید. مثال:</p>
+        <code style="margin-bottom: 1rem;">
+            curl -L https://www.ihosseinu.ir/api/fibonacci_until/100<br>
+            {
+                "status": "success",
+                "data": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    3,
+                    5,
+                    8,
+                    13,
+                    21,
+                    34,
+                    55,
+                    89]
+            }
+        </code>
     </div>
 {% endblock%}

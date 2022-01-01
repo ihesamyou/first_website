@@ -15,7 +15,8 @@ def home(request):
     """Home page view. displays articles and a quote."""
     context = {
         'articles': Article.objects.all(),
-        'quote': cache.get('quote')
+        'quote': cache.get('quote'),
+        'quote_author': cache.get('quote_author')
     }
     return render(request, 'blog/home.html', context)
 

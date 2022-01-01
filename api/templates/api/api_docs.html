@@ -13,9 +13,14 @@
         <hr>
         <p>این سایت دارای ۳ api برای استفاده توسعه دهندگان است:</p>
             <ul style="margin-right: 1rem;">
-            <li><a href="{% url 'currency-docs' %}"><h5>API ارزها</h5></a></li>
-            <li><a href="{% url 'quote-docs' %}"><h5>API نقل قول</h5></a></li>
-            <li><a href="{% url 'fibonacci-docs' %}"><h5>API فیبوناچی</h5></a></li>
+                <li><a href="{% url 'currency-docs' %}"><h5>API ارزها</h5></a></li>
+                <li><a href="{% url 'quote-docs' %}"><h5>API نقل قول</h5></a></li>
+                <li><a href="{% url 'fibonacci-docs' %}"><h5>API فیبوناچی</h5></a></li>
             </ul>
+        <p>
+            کاربران عضو سایت میتوانند در هر ساعت ۱۰۰ ریکوئست و دیگر کاربران میتوانند در هر ساعت ۲۰ ریکوئست ارسال نمایند.
+            <br> کاربران سایت میتوانند با این دستور شناسایی شوند:
+        </p>
+        <code style="margin-bottom: 1rem;">curl --user "USERNAME:PASSWORD" -L https://www.ihosseinu.ir/api/api</code>
     </div>
 {% endblock%}

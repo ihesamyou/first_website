@@ -22,4 +22,5 @@ def random_quote():
     """Saves a random quote from Quote model to the cache."""
     items = Quote.objects.all()
     quote = random.choice(items)
-    cache.set('quote', quote, 310)
+    cache.set('quote', quote.quote, 310)
+    cache.set('quote_author', quote.author, 310)

@@ -39,11 +39,11 @@
                     <span>به وب سایت من خوش آمدید.</span>
                     <span>من در زمینه برنامه نویسی فعالیت میکنم و به موضوعات تکنولوژی، مالی، کلان داده و فلسفه علاقه مندم.</span>
                 </div>
-                {% if quote.quote %}
+                {% if quote %}
                     <div class="content-section quote-section">
                         <span>نقل قول:</span><br><br>
-                        <q>‌{{ quote.quote }}</q><br><br>
-                        <span>-{{ quote.author }}</span>
+                        <q>‌{{ quote }}</q><br><br>
+                        <span>-{{ quote_author }}</span>
                     </div>
                 {% endif %}
             </div>
