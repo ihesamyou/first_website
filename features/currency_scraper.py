@@ -4,6 +4,9 @@ import time
 
 
 def get_prices():
+    """
+    Scrapes currency names and prices and returns them as a dictionary.
+    """
     try:
         with webdriver.Firefox() as driver:
             driver.get('https://www.tgju.org/currency')

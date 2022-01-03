@@ -6,6 +6,9 @@ from django.core.cache import cache
 
 @shared_task
 def update_prices():
+    """
+    Updates currency model prices using get_prices function.
+    """
     prices = get_prices()
 
     if prices:

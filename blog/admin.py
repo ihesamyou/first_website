@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Comment, Article, Quote, ContactMessage
+from .models import Comment, Article, Quote, ContactMessage
 
 
 class ArticleAdmin(admin.ModelAdmin):

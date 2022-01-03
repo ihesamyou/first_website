@@ -1,4 +1,3 @@
-from django.contrib.messages.api import success
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from .models import Article
@@ -9,10 +8,13 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def home(request):
-    """Home page view. displays articles and a quote."""
+    """
+    Home page view. displays articles and a quote.
+    """
     context = {
         'articles': Article.objects.all(),
         'quote': cache.get('quote'),
@@ -22,10 +24,11 @@ def home(request):
 
 
 def article(request, pk, cm=None):
-    """Article view. pk is article's id and cm is id of a specific comment for replying.
+    """
+    Article view. pk is article's id and cm is id of a specific comment for replying.
     shows details of an article including confirmed comments and a comment_form to submit
-    a new comment and a reply_form for new reply to a comment if the cm argument is passed to the view."""
-
+    a new comment and a reply_form for a new reply to a comment if the cm argument is passed to the view.
+    """
     article_obj = get_object_or_404(Article, id=pk)
 
     if request.method == 'POST':
@@ -71,17 +74,33 @@ def article(request, pk, cm=None):
     return render(request, 'blog/article_detail.html', context)
 
 
-class CommentUpdateView(SuccessMessageMixin, UpdateView):
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+    """
+    View for updating comments.
+    doesn't give access to comment if the user is not the author.
+    """
     model = Comment
     fields = ['comment']
     template_name = 'blog/comment_update.html'
     success_message = 'دیدگاه شما با موفقیت ویرایش شد.'
 
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
 
-class CommentDeleteView(SuccessMessageMixin, DeleteView):
+
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+    """
+    View for deleting comments.
+    doesn't give access to comment if the user is not the author.
+    """
     model = Comment
     fields = ['comment']
     template_name = 'blog/comment_delete.html'
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
 
     def get_success_url(self):
         messages.success(self.request, 'دیدگاه شما با موفقیت حذف شد.')
@@ -89,8 +108,10 @@ class CommentDeleteView(SuccessMessageMixin, DeleteView):
 
 
 def contact(request):
-    """Contact page view. Uses ContactForm modelform to save user messages into ContactMessage model."""
-
+    """
+    Contact page view.
+    Uses ContactForm modelform to save user messages into ContactMessage model.
+    """
     if request.method == 'POST':
         form = ContactForm(request.POST)
 

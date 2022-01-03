@@ -5,8 +5,10 @@ from django.core.cache import cache
 
 
 def fibonacci(request):
-    """uses fibonacci_sequence module to calculate fibonacci sequence 
-    in two different ways and will render the results on the fibonacci.html template."""
+    """
+    Uses fibonacci_sequence module to calculate fibonacci sequence 
+    in two different ways and will render the results on the fibonacci.html template.
+    """
 
     if request.method == 'POST':
         f_index = FibonacciIndex(request.POST)

@@ -1,8 +1,10 @@
 
 def fibonacci_index(index):
-    """returns fibonacci sequence with the given index being the last value.
+    """
+    Returns fibonacci sequence with the given index being the last value.
     if the value passed to it is None it will do nothing and it will return [0, 1]
-    if the value passed to it is less than 3."""
+    if the value passed to it is less than 3.
+    """
     if index:
         initial_sequence = [0, 1]
         if index < 3:
@@ -16,8 +18,10 @@ def fibonacci_index(index):
 
 
 def fibonacci_until(values_until):
-    """returns all fibonacci sequence values before the given number.
-    if the value passed to it is None it will do nothing."""
+    """
+    Returns all fibonacci sequence values before the given number.
+    if the value passed to it is None it will do nothing.
+    """
 
     if values_until:
         initial_sequence = [0, 1]
