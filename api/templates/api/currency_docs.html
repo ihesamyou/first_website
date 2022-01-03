@@ -19,9 +19,9 @@
             <br>
             <code>curl -L https://www.ihosseinu.ir/api/currency
                 <br>
-                >>> {"status":"success","data":[{"id":1,"name":"لیر ترکیه","price":18200},<br>
+                >>> {"status":"success","data":[{"name":"لیر ترکیه", "price":18200},<br>
                     ..., <br>
-                    {"id":36,"name":"سوم قرقیزستان","price":3540}]}
+                    {"name":"سوم قرقیزستان", "price":3540}]}
             </code></li>
             <li style="margin-top: 3rem;">برای گرفتن آخرین نرخ یک ارز خاص میتوانید از آدرس "www.ihosseinu.ir/api/currency/ارز" استفاده کنید. مثال:
                 <br>
@@ -30,7 +30,6 @@
                     >>> {
                         "status": "success",
                         "data": {
-                            "id": 17,
                             "name": "یورو",
                             "price": 307960
                         }

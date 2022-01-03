@@ -1,4 +1,3 @@
-from django.http.response import Http404
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,7 +7,6 @@ from features.models import Currency
 from django.core.cache import cache
 from features.fibonacci_sequence import fibonacci_until, fibonacci_index
 from django.shortcuts import get_object_or_404
-import json
 
 
 def api_docs(request):
@@ -28,6 +26,11 @@ def quote_docs(request):
 
 
 class CurrencyAPIView(APIView):
+    """
+    If a name is passed to this api, it will return the currency data matching with that name
+    otherwise it will return all currecies data. 
+    """
+
     def get(self, request, name=None):
         if name:
             currency = get_object_or_404(Currency, name=name)
@@ -40,6 +43,10 @@ class CurrencyAPIView(APIView):
 
 
 class RialConverterAPIView(APIView):
+    """
+    It will convert rial amount to the given currency and returns the result.
+    """
+
     def get(self, request, name, amount):
         currency = get_object_or_404(Currency, name=name)
         result = amount/currency.price
@@ -47,6 +54,10 @@ class RialConverterAPIView(APIView):
 
 
 class CurrencyConverterAPIView(APIView):
+    """
+    It will convert the given currency amount to rial and returns the result.
+    """
+
     def get(self, request, name, amount):
         currency = get_object_or_404(Currency, name=name)
         result = amount*currency.price
@@ -54,6 +65,10 @@ class CurrencyConverterAPIView(APIView):
 
 
 class QuoteAPIView(APIView):
+    """
+    It will return the quote that is saved in cache.
+    """
+
     def get(self, request):
         quote = cache.get('quote')
         quote_author = cache.get('quote_author')
@@ -64,6 +79,10 @@ class QuoteAPIView(APIView):
 
 
 class FibonacciIndexAPIView(APIView):
+    """
+    Returns the result of fibonacci_index function for numbers < 1001.
+    """
+
     def get(self, request, number):
         if number < 1001:
             answer = fibonacci_index(number)
@@ -73,6 +92,10 @@ class FibonacciIndexAPIView(APIView):
 
 
 class FibonacciUntilAPIView(APIView):
+    """
+    Returns the result of fibonacci_until function for numbers smaller than specified number.
+    """
+
     def get(self, request, number):
         if number < 26863810024485359386146727202142923967616609318986952340123175997617981700247881689338369654483356564191827856161443356312976673642210350324634850410377680367334151172899169723197082763985615764450078474174628:
             answer = fibonacci_until(number)
