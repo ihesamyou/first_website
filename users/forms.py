@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import SetPasswordForm, UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
 from .models import Profile, User
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 
 class LoginForm(AuthenticationForm):
@@ -14,6 +16,7 @@ class LoginForm(AuthenticationForm):
         'invalid_login': ("نام کاربری یا رمز عبور اشتباه است."),
         'inactive': ("این اکانت غیرفعال است."),
     }
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
 
 class RegisterForm(UserCreationForm):
@@ -34,6 +37,7 @@ class RegisterForm(UserCreationForm):
     error_messages = {
         'password_mismatch': ("رمز عبورها باید دقیقا مثل هم باشند.")
     }
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
     class Meta:
         model = User
@@ -68,6 +72,7 @@ class PasswordReset(PasswordResetForm):
     We use this form in order to display labels and errors in Farsi instead of default PasswordResetForm's labels and forms.
     """
     email = forms.EmailField(label=("ایمیل"), max_length=254)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
 
 class ConfirmPasswordReset(SetPasswordForm):

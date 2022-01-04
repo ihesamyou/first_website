@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'rest_framework',
     'crispy_forms',
-    'mptt'
+    'mptt',
+    'captcha'
 
 ]
 
@@ -98,7 +99,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": os.environ['REDIS_LOCATION'],
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
@@ -108,7 +109,7 @@ CACHES = {
 
 
 # Celery configurations
-CELERY_BROKER_URL = 'amqp://django_server:blackmirror@localhost:5672/django_vhost'
+CELERY_BROKER_URL = os.environ['CELERY_BROKER_URL']
 CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = 'Asia/Tehran'
 
@@ -119,8 +120,8 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle'
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '1000/hour',
-        'user': '1000/hour'
+        'anon': '20/hour',
+        'user': '100/hour'
     }
 }
 
@@ -184,10 +185,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ['PERSONAL_EMAIL_USER']
-EMAIL_HOST_PASSWORD = os.environ['PERSONAL_EMAIL_PASS']
+EMAIL_HOST_USER = os.environ['EMAIL_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# RECAPTCHA_PUBLIC_KEY = '6LfwV0wdAAAAABvl0iekV9kjVHOJtyA6MdieoUGI'
-# RECAPTCHA_PRIVATE_KEY = '6LfwV0wdAAAAACxSHcX978dbFVk4lTyFlqbP8FE_'
+RECAPTCHA_PUBLIC_KEY = os.environ['CAPTCHA_PUBLIC']
+RECAPTCHA_PRIVATE_KEY = os.environ['CAPTCHA_PRIVATE']
