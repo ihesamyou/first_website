@@ -99,7 +99,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ['REDIS_LOCATION'],
+        "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
@@ -109,7 +109,7 @@ CACHES = {
 
 
 # Celery configurations
-CELERY_BROKER_URL = os.environ['CELERY_BROKER_URL']
+CELERY_BROKER_URL = "amqp://django_server:blackmirror@localhost:5672/django_vhost"
 CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = 'Asia/Tehran'
 

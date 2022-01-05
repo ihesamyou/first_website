@@ -16,7 +16,8 @@ class LoginForm(AuthenticationForm):
         'invalid_login': ("نام کاربری یا رمز عبور اشتباه است."),
         'inactive': ("این اکانت غیرفعال است."),
     }
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox,
+                             label='من یک ربات نیستم!')
 
 
 class RegisterForm(UserCreationForm):
@@ -37,7 +38,8 @@ class RegisterForm(UserCreationForm):
     error_messages = {
         'password_mismatch': ("رمز عبورها باید دقیقا مثل هم باشند.")
     }
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox,
+                             label='من یک ربات نیستم!')
 
     class Meta:
         model = User
@@ -72,7 +74,8 @@ class PasswordReset(PasswordResetForm):
     We use this form in order to display labels and errors in Farsi instead of default PasswordResetForm's labels and forms.
     """
     email = forms.EmailField(label=("ایمیل"), max_length=254)
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox,
+                             label='من یک ربات نیستم!')
 
 
 class ConfirmPasswordReset(SetPasswordForm):

@@ -1,5 +1,4 @@
 from django.apps import AppConfig
-from django.db.models.signals import post_save
 
 
 class UsersConfig(AppConfig):
@@ -8,4 +7,3 @@ class UsersConfig(AppConfig):
 
     def ready(self):
         from . import signals
-        post_save.connect(signals.update_profile)
