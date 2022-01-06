@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
     'blog.apps.BlogConfig',
     'features.apps.FeaturesConfig',
     'users.apps.UsersConfig',
