@@ -30,7 +30,7 @@
                     <h5>مقالات</h5>
                     <hr>
                     {% for article in articles %}
-                        <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                        <a href="{{ article.get_absolute_url }}">{{ article }}</a><br>
                     {% endfor %}
                 </div>
             {% endif %}

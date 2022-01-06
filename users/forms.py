@@ -1,5 +1,11 @@
 from django import forms
-from django.contrib.auth.forms import SetPasswordForm, UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
+from django.contrib.auth.forms import (
+    SetPasswordForm,
+    UserCreationForm,
+    AuthenticationForm,
+    PasswordChangeForm,
+    PasswordResetForm,
+)
 from .models import Profile, User
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
@@ -7,107 +13,125 @@ from captcha.widgets import ReCaptchaV2Checkbox
 
 class LoginForm(AuthenticationForm):
     """
-    We use this form in order to display labels and errors in Farsi instead of default AuthenticationForm's labels and forms.
+    Farsi AuthenticationForm
     """
 
     username = forms.CharField(max_length=254, label=("نام کاربری"))
     password = forms.CharField(label=("رمز عبور"), widget=forms.PasswordInput)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label="من یک ربات نیستم!")
     error_messages = {
-        'invalid_login': ("نام کاربری یا رمز عبور اشتباه است."),
-        'inactive': ("این اکانت غیرفعال است."),
+        "invalid_login": ("نام کاربری یا رمز عبور اشتباه است."),
+        "inactive": ("این اکانت غیرفعال است."),
     }
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox,
-                             label='من یک ربات نیستم!')
 
 
 class RegisterForm(UserCreationForm):
     """
-    We use this form in order to display labels and errors in Farsi instead of default UserCreationForm's labels and forms.
+    Farsi UserCreationFrom
     """
 
-    username = forms.CharField(max_length=254, label=("نام کاربری"), error_messages={
-        "unique": "این نام کاربری قبلا ثبت شده است."})
+    username = forms.CharField(
+        max_length=100,
+        label=("نام کاربری"),
+        error_messages={
+            "unique": "این نام کاربری قبلا ثبت شده است.",
+            "invalid": "یک نام کاربری معتبر وارد کنید.",
+        },
+    )
+    email = forms.EmailField(
+        label=("ایمیل"),
+        max_length=254,
+        error_messages={"invalid": "یک ایمیل معتبر وارد کنید."},
+    )
     password1 = forms.CharField(
-        label="رمز عبور",
-        strip=False,
-        widget=forms.PasswordInput)
+        label="رمز عبور", strip=False, widget=forms.PasswordInput
+    )
     password2 = forms.CharField(
-        label="تکرار رمز عبور",
-        strip=False,
-        widget=forms.PasswordInput)
+        label="تکرار رمز عبور", strip=False, widget=forms.PasswordInput
+    )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label="من یک ربات نیستم!")
     error_messages = {
-        'password_mismatch': ("رمز عبورها باید دقیقا مثل هم باشند.")
+        "password_mismatch": ("هر دو رمز عبور باید دقیقا مثل هم باشند."),
     }
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox,
-                             label='من یک ربات نیستم!')
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name',
-                  'email', 'password1', 'password2']
-        labels = {
-            'first_name': 'نام',
-            'last_name': 'نام خانوادگی',
-            'email': 'ایمیل'
-        }
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        ]
+        labels = {"first_name": "نام", "last_name": "نام خانوادگی", "email": "ایمیل"}
 
 
 class PasswordChange(PasswordChangeForm):
     """
-    We use this form in order to display labels and errors in Farsi instead of default PasswordChangeForm's labels and forms.
+    Farsi PasswordChangeForm
     """
 
-    old_password = forms.CharField(label=("رمز عبور فعلی"),
-                                   widget=forms.PasswordInput)
-    new_password1 = forms.CharField(label=("رمز عبور جدید"),
-                                    widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label=("تکرار رمز عبور جدید"),
-                                    widget=forms.PasswordInput)
+    old_password = forms.CharField(label=("رمز عبور فعلی"), widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label=("رمز عبور جدید"), widget=forms.PasswordInput)
+    new_password2 = forms.CharField(
+        label=("تکرار رمز عبور جدید"), widget=forms.PasswordInput
+    )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label="من یک ربات نیستم!")
     error_messages = {
-        'password_mismatch': ("هر دو رمز عبور باید دقیقا مثل هم باشند."),
-        'password_incorrect': ("رمز عبور فعلی اشتباه است.")
+        "password_mismatch": ("هر دو رمز عبور باید دقیقا مثل هم باشند."),
+        "password_incorrect": ("رمز عبور فعلی اشتباه است."),
     }
 
 
 class PasswordReset(PasswordResetForm):
     """
-    We use this form in order to display labels and errors in Farsi instead of default PasswordResetForm's labels and forms.
+    Farsi PasswordResetForm
     """
-    email = forms.EmailField(label=("ایمیل"), max_length=254)
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox,
-                             label='من یک ربات نیستم!')
+
+    email = forms.EmailField(
+        label=("ایمیل"),
+        max_length=254,
+        error_messages={"invalid": "یک ایمیل معتبر وارد کنید."},
+    )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label="من یک ربات نیستم!")
 
 
 class ConfirmPasswordReset(SetPasswordForm):
     """
-    We use this form in order to display labels and errors in Farsi instead of default PasswordChangeForm's labels and forms.
+    Farsi SetPasswordFrom
     """
 
-    new_password1 = forms.CharField(label=("رمز عبور جدید"),
-                                    widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label=("تکرار رمز عبور جدید"),
-                                    widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label=("رمز عبور جدید"), widget=forms.PasswordInput)
+    new_password2 = forms.CharField(
+        label=("تکرار رمز عبور جدید"), widget=forms.PasswordInput
+    )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label="من یک ربات نیستم!")
+    error_messages = {"password_mismatch": "هر دو رمز عبور باید دقیقا مثل هم باشند."}
 
 
 class UserEditForm(forms.ModelForm):
+    """
+    A ModelForm for editing User model information by user.
+    """
+
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
-        self.fields['username'].help_text = None
+        self.fields["username"].help_text = None
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
-        labels = {
-            'username': 'نام کاربری',
-            'first_name': 'نام',
-            'last_name': 'نام خانوادگی',
-            'email': 'ایمیل'
-        }
+        fields = ["username", "first_name", "last_name", "email"]
+        labels = {"username": "نام کاربری"}
 
 
 class ProfileEditForm(forms.ModelForm):
+    """
+    A ModelForm for editing Profile model information by user.
+    """
+
     photo = forms.ImageField(label=None, widget=forms.FileInput)
 
     class Meta:
         model = Profile
-        fields = ['photo', 'receive_updates']
+        fields = ["photo", "receive_updates"]
