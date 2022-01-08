@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_celery_beat',
+    'django_celery_results',
     'rest_framework',
     'crispy_forms',
     'mptt',
@@ -85,11 +86,11 @@ WSGI_APPLICATION = "personal_website.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "django_server",
         "USER": os.environ.get("DJANGODB_USER"),
         "PASSWORD": os.environ.get("DJANGODB_PASS"),
-        "HOST": "127.0.0.1",
+        "HOST": "localhost",
         "PORT": "5432",
     }
 }
@@ -110,7 +111,8 @@ CACHES = {
 
 # Celery configurations
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = "db+postgresql+psycopg2://"
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_PERSISTENT = False
 CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = "Asia/Tehran"
 
