@@ -2,6 +2,7 @@ from celery import shared_task
 from .currency_scraper import get_prices
 from .models import Currency
 from django.core.cache import cache
+from personal_website.celery import create_connection
 
 
 @shared_task
@@ -12,6 +13,7 @@ def update_prices():
     prices = get_prices()
 
     if prices:
+        connection = create_connection()
         for name, price in prices.items():
             try:
                 old_price = Currency.objects.get(name=name)
@@ -21,3 +23,4 @@ def update_prices():
             except Currency.DoesNotExist:
                 Currency.objects.create(name=name, price=price)
                 cache.set(name, price, None)
+        connection.close()
