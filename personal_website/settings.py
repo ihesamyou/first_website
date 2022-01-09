@@ -111,8 +111,6 @@ CACHES = {
 
 # Celery configurations
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = "django-db"
-CELERY_RESULT_PERSISTENT = False
 CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = "Asia/Tehran"
 
