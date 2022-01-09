@@ -6,9 +6,9 @@ from celery import Celery
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "personal_website.settings")
 
-app.config_from_object("django.conf:settings", namespace="CELERY")
+app = Celery("personal_website", broker=os.environ.get("CELERY_BROKER_URL"))
 
-app = Celery("personal_website")
+app.config_from_object("django.conf:settings", namespace="CELERY")
 
 app.autodiscover_tasks()
 
