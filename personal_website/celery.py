@@ -1,14 +1,15 @@
 import os
 from celery import Celery
+from django.conf import settings
 from django.db import connections
 from django.db.utils import DEFAULT_DB_ALIAS, load_backend
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "personal_website.settings")
 
-app = Celery("personal_website", broker=os.environ.get("CELERY_BROKER_URL"))
+app = Celery("personal_website")
 
-app.config_from_object("django.conf:settings", namespace="CELERY")
+app.config_from_object(settings, namespace="CELERY")
 
 app.autodiscover_tasks()
 
