@@ -2,6 +2,7 @@
 media/article_images/*
 media/profile_photos/*
 env
+static/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
