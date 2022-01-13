@@ -1,7 +1,7 @@
 #Manually Added
 media/article_images/*
 media/profile_photos/*
-./static/*
+static/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
