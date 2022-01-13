@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = str(os.environ.get("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,10 +88,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "django_server",
-        "USER": os.environ["DJANGODB_USER"],
-        "PASSWORD": os.environ["DJANGODB_PASS"],
-        "HOST": "localhost",
-        "PORT": "5432",
+        "USER": "django_server",
+        "PASSWORD": "CH4eRn06biL_",
+        "HOST": "",
+        "PORT": "",
     }
 }
 
@@ -99,10 +99,9 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/",
+        "LOCATION": "redis://'':LGH3ljUEQCSVu_cTwOEwMAxa08aXYCQpuEKlt1qErJpZ8J5NUWFNBmjcfL6nVY3cPEUScIgotVSYKzJa@127.0.0.1:6379",
         "OPTIONS": {
-            "PASSWORD": os.environ.get("REDIS_PASS"),
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+	    "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
         "KEY_PREFIX": "pw",
     }
