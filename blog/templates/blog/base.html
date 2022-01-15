@@ -14,7 +14,15 @@
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}"/>
   <link rel="icon" href="{% static 'blog/favicon.png' %}">
-  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NELTQC4S7G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NELTQC4S7G');
+  </script>  
+
   {% block page_title %}
     {% if page_title %}
       {{ page_title }}

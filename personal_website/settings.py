@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["ihosseinu.ir" ,"185.126.200.96", "localhost"]
+ALLOWED_HOSTS = ["www.ihosseinu.info", "ihosseinu.info", "localhost"]
 
 
 # Application definition
