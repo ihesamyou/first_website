@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.environ.get("SECRET_KEY"))
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["ihosseinu.ir" ,"185.126.200.96", "localhost"]
 
@@ -88,8 +90,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "django_server",
-        "USER": "django_server",
-        "PASSWORD": "CH4eRn06biL_",
+        "USER": os.getenv("DJANGODB_USER"),
+        "PASSWORD": os.getenv("DJANGODB_PASS"),
         "HOST": "",
         "PORT": "",
     }
@@ -99,7 +101,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://'':LGH3ljUEQCSVu_cTwOEwMAxa08aXYCQpuEKlt1qErJpZ8J5NUWFNBmjcfL6nVY3cPEUScIgotVSYKzJa@127.0.0.1:6379",
+        "LOCATION": str(os.getenv("REDIS_LOCATION")),
         "OPTIONS": {
 	    "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
@@ -109,7 +111,7 @@ CACHES = {
 
 
 # Celery configurations
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = "Asia/Tehran"
@@ -180,10 +182,10 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
+EMAIL_HOST_USER = os.getenv("EMAIL_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-RECAPTCHA_PUBLIC_KEY = str(os.environ.get("CAPTCHA_PUBLIC"))
-RECAPTCHA_PRIVATE_KEY = str(os.environ.get("CAPTCHA_PRIVATE"))
+RECAPTCHA_PUBLIC_KEY = os.getenv("CAPTCHA_PUBLIC")
+RECAPTCHA_PRIVATE_KEY = os.getenv("CAPTCHA_PRIVATE")
