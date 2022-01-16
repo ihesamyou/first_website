@@ -1,14 +1,18 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
 import time
 
 
 def get_prices():
     """
     Scrapes currency names and prices and returns them as a dictionary.
+    Headless option is for running the code on servers.
     """
     try:
-        with webdriver.Firefox() as driver:
+        options = Options()
+        options.headless = True
+        with webdriver.Firefox(options=options) as driver:
             driver.get('https://www.tgju.org/currency')
             time.sleep(10)
             rows = driver.find_elements(By.CLASS_NAME, 'pointer')
