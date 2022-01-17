@@ -15,17 +15,17 @@
         <p>در این سایت چهار api تحت وب برای کار با ارزها وجود دارد (اعداد حتما باید به صورت انگلیسی وارد شوند):</p>
         <ol type="1" style="margin-right: 1rem;">
             <li>برای گرفتن آخرین نرخ ارزهای مختلف بر حسب ریال و بر اساس داده های سایت <a href="https://www.tgju.org/">www.tgju.org</a>
-            میتوانید از آدرس "www.ihosseinu.ir/api/currency" استفاده کنید. مثال:
+            میتوانید از آدرس "www.ihosseinu.info/api/currency" استفاده کنید. مثال:
             <br>
-            <code>curl -L https://www.ihosseinu.ir/api/currency
+            <code>curl -L https://www.ihosseinu.info/api/currency
                 <br>
                 >>> {"status":"success","data":[{"name":"لیر ترکیه", "price":18200},<br>
                     ..., <br>
                     {"name":"سوم قرقیزستان", "price":3540}]}
             </code></li>
-            <li style="margin-top: 3rem;">برای گرفتن آخرین نرخ یک ارز خاص میتوانید از آدرس "www.ihosseinu.ir/api/currency/ارز" استفاده کنید. مثال:
+            <li style="margin-top: 3rem;">برای گرفتن آخرین نرخ یک ارز خاص میتوانید از آدرس "www.ihosseinu.info/api/currency/ارز" استفاده کنید. مثال:
                 <br>
-                <code>curl -L https://www.ihosseinu.ir/api/currency/یورو
+                <code>curl -L https://www.ihosseinu.info/api/currency/یورو
                     <br>
                     >>> {
                         "status": "success",
@@ -35,18 +35,18 @@
                         }
                     }
                 </code></li>
-            <li style="margin-top: 3rem;">برای تبدیل ریال به دیگر ارزها میتوانید از آدرس "www.ihosseinu.ir/api/rial_converter/ارز/مقدار" استفاده کنید. مثال:
+            <li style="margin-top: 3rem;">برای تبدیل ریال به دیگر ارزها میتوانید از آدرس "www.ihosseinu.info/api/rial_converter/ارز/مقدار" استفاده کنید. مثال:
                 <br>
-                <code>curl -L https://www.ihosseinu.ir/api/rial_converter/دلار/30000
+                <code>curl -L https://www.ihosseinu.info/api/rial_converter/دلار/30000
                     <br>
                     >>> {
                         "status": "success",
                         "data": 1.0390959864917522
                     }
                 </code></li>
-            <li style="margin-top: 3rem;">برای تبدیل دیگر ارزها به ریال میتوانید از آدرس "www.ihosseinu.ir/api/currency_converter/ارز/مقدار" استفاده کنید. مثال:
+            <li style="margin-top: 3rem;">برای تبدیل دیگر ارزها به ریال میتوانید از آدرس "www.ihosseinu.info/api/currency_converter/ارز/مقدار" استفاده کنید. مثال:
                 <br>
-                <code>curl -L https://www.ihosseinu.ir/api/currency_converter/لیر ترکیه/5600
+                <code>curl -L https://www.ihosseinu.info/api/currency_converter/لیر ترکیه/5600
                     <br>
                     >>> {
                         "status": "success",
