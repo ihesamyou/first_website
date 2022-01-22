@@ -7,7 +7,7 @@
     <div class="content-section single-content">
         <h5>ویرایش پروفایل</h5>
         <hr>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
             {{ user_form|crispy }}
             <br>

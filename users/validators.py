@@ -97,7 +97,7 @@ class FarsiCommonPasswordValidator(CommonPasswordValidator):
     def validate(self, password, user=None):
         if password.lower().strip() in self.passwords:
             raise ValidationError(
-                _("رمز عبور بیش از حد ساده و معمول است."),
+                _("رمز عبور بیش از حد ساده است."),
                 code="password_too_common",
             )
 
