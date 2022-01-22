@@ -103,7 +103,7 @@ CACHES = {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": str(os.getenv("REDIS_LOCATION")),
         "OPTIONS": {
-	    "CLIENT_CLASS": "django_redis.client.DefaultClient"
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
         "KEY_PREFIX": "pw",
     }
