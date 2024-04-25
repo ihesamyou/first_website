@@ -23,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["www.ihosseinu.info", "ihosseinu.info", "localhost"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -89,7 +89,7 @@ WSGI_APPLICATION = "personal_website.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "website",
+        "NAME": "personal_website",
         "USER": os.getenv("DJANGODB_USER"),
         "PASSWORD": os.getenv("DJANGODB_PASS"),
         "HOST": "",
@@ -184,8 +184,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")
-
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-RECAPTCHA_PUBLIC_KEY = os.getenv("CAPTCHA_PUBLIC")
-RECAPTCHA_PRIVATE_KEY = os.getenv("CAPTCHA_PRIVATE")
+RECAPTCHA_PUBLIC_KEY = str(os.getenv("CAPTCHA_PUBLIC"))
+RECAPTCHA_PRIVATE_KEY = str(os.getenv("CAPTCHA_PRIVATE"))
