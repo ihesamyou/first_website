@@ -28,7 +28,7 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.1"]
 
 
 # Application definition
@@ -89,11 +89,11 @@ WSGI_APPLICATION = "personal_website.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "personal_website",
+        "NAME": "website",
         "USER": os.getenv("DJANGODB_USER"),
         "PASSWORD": os.getenv("DJANGODB_PASS"),
-        "HOST": "",
-        "PORT": "",
+        "HOST": "website-postgres",
+        "PORT": "5432",
     }
 }
 
@@ -115,6 +115,7 @@ CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = "Asia/Tehran"
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 
 REST_FRAMEWORK = {
@@ -188,3 +189,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 RECAPTCHA_PUBLIC_KEY = str(os.getenv("CAPTCHA_PUBLIC"))
 RECAPTCHA_PRIVATE_KEY = str(os.getenv("CAPTCHA_PRIVATE"))
+
+
+DJANGO_SUPERUSER_USERNAME = str(os.getenv("DJANGO_SUPERUSER_USERNAME"))
+DJANGO_SUPERUSER_EMAIL = str(os.getenv("DJANGO_SUPERUSER_EMAIL"))
+DJANGO_SUPERUSER_PASSWORD = str(os.getenv("DJANGO_SUPERUSER_PASSWORD"))

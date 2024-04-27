@@ -30,5 +30,7 @@
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
+**/db_user.txt
+**/db_pass.txt
 LICENSE
 README.md

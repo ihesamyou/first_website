@@ -31,8 +31,7 @@ RUN adduser \
     website
 
 
-RUN apt-get update \
-    apt-get install -y curl
+RUN apt-get update && apt-get install -y curl
 
 RUN pip install --upgrade pip
 # Download dependencies as a separate step to take advantage of Docker's caching.
@@ -53,4 +52,4 @@ COPY . /usr/src/website
 EXPOSE 8000
 
 # Run the application.
-CMD ["bash", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["bash", "-c", "python personal_website/manage.py makemigrations && python personal_website/manage.py migrate && python personal_website/manage.py runserver 0.0.0.0:8000"]
