@@ -44,15 +44,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'allauth',
-    'allauth.account',
+    "allauth",
+    "allauth.account",
+    # "allauth.socialaccount",
+    # "allauth.socialaccount.providers.google",
     "crispy_forms",
     "rest_framework",
     "django_celery_beat",
     "django_celery_results",
     # "mptt",
     # "captcha",
-    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
