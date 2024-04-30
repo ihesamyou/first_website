@@ -34,22 +34,25 @@ ALLOWED_HOSTS = ["localhost", "0.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
-    "blog.apps.BlogConfig",
-    "features.apps.FeaturesConfig",
-    "users.apps.UsersConfig",
-    "api.apps.ApiConfig",
+    # "blog.apps.BlogConfig",
+    # "features.apps.FeaturesConfig",
+    # "users.apps.UsersConfig",
+    # "api.apps.ApiConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'allauth',
+    'allauth.account',
+    "crispy_forms",
+    "rest_framework",
     "django_celery_beat",
     "django_celery_results",
-    "rest_framework",
-    "crispy_forms",
-    "mptt",
-    "captcha",
+    # "mptt",
+    # "captcha",
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +63,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "personal_website.urls"
@@ -79,6 +83,13 @@ TEMPLATES = [
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 
 WSGI_APPLICATION = "personal_website.wsgi.application"
 
@@ -114,7 +125,7 @@ CACHES = {
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_ENABLE_UTC = False
-CELERY_TIMEZONE = "Asia/Tehran"
+CELERY_TIMEZONE = "Europe/Rome"
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 
@@ -132,16 +143,16 @@ REST_FRAMEWORK = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "users.validators.FarsiUserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "users.validators.FarsiMinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "users.validators.FarsiCommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "users.validators.FarsiNumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -151,7 +162,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "Asia/Tehran"
+TIME_ZONE = "Europe/Rome"
 
 USE_TZ = True
 
@@ -170,7 +181,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "users.User"
+# AUTH_USER_MODEL = "users.User"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -191,6 +202,15 @@ RECAPTCHA_PUBLIC_KEY = str(os.getenv("CAPTCHA_PUBLIC"))
 RECAPTCHA_PRIVATE_KEY = str(os.getenv("CAPTCHA_PRIVATE"))
 
 
-DJANGO_SUPERUSER_USERNAME = str(os.getenv("DJANGO_SUPERUSER_USERNAME"))
-DJANGO_SUPERUSER_EMAIL = str(os.getenv("DJANGO_SUPERUSER_EMAIL"))
-DJANGO_SUPERUSER_PASSWORD = str(os.getenv("DJANGO_SUPERUSER_PASSWORD"))
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         # For each OAuth based provider, either add a ``SocialApp``
+#         # (``socialaccount`` app) containing the required client
+#         # credentials, or list them here:
+#         'APP': {
+#             'client_id': '123',
+#             'secret': '456',
+#             'key': ''
+#         }
+#     }
+# }

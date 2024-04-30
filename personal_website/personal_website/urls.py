@@ -19,11 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('whereisadmin/', admin.site.urls),
-    path('', include('blog.urls')),
-    path('', include('features.urls')),
-    path('', include('users.urls')),
-    path('api/', include('api.urls'))
+    path('admin/', admin.site.urls),
+    # path('accounts/', include('allauth.urls')),
+    # path('', include('blog.urls')),
+    # path('', include('features.urls')),
+    # path('', include('users.urls')),
+    # path('api/', include('api.urls'))
 ]
 
 if settings.DEBUG:
