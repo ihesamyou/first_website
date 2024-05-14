@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ["localhost", "0.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
-    # "blog.apps.BlogConfig",
+    "blog.apps.BlogConfig",
     # "features.apps.FeaturesConfig",
     # "users.apps.UsersConfig",
     # "api.apps.ApiConfig",
@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_celery_beat",
     "django_celery_results",
-    # "mptt",
+    "django_summernote",
+    "mptt",
     # "captcha",
 ]
 
@@ -101,10 +102,10 @@ WSGI_APPLICATION = "personal_website.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "website",
+        "NAME": "personal_website",
         "USER": os.getenv("DJANGODB_USER"),
         "PASSWORD": os.getenv("DJANGODB_PASS"),
-        "HOST": "website-postgres",
+        "HOST": "personal_website_postgres",
         "PORT": "5432",
     }
 }
@@ -163,7 +164,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "Europe/Rome"
+TIME_ZONE = "UTC"
 
 USE_TZ = True
 
@@ -201,6 +202,26 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 RECAPTCHA_PUBLIC_KEY = str(os.getenv("CAPTCHA_PUBLIC"))
 RECAPTCHA_PRIVATE_KEY = str(os.getenv("CAPTCHA_PRIVATE"))
+
+ACCOUNT_CHANGE_EMAIL = True
+ACCOUNT_EMAIL_NOTIFICATIONS = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "IHESAMYOU.COM "
+ACCOUNT_EMAIL_UNKNOWN_ACCOUNTS = False
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+
+ACCOUNT_FORMS = {
+    'add_email': 'allauth.account.forms.AddEmailForm',
+    'change_password': 'allauth.account.forms.ChangePasswordForm',
+    'confirm_login_code': 'allauth.account.forms.ConfirmLoginCodeForm',
+    'login': 'allauth.account.forms.LoginForm',
+    'request_login_code': 'allauth.account.forms.RequestLoginCodeForm',
+    'reset_password': 'allauth.account.forms.ResetPasswordForm',
+    'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
+    'set_password': 'allauth.account.forms.SetPasswordForm',
+    'signup': 'allauth.account.forms.SignupForm',
+    'user_token': 'allauth.account.forms.UserTokenForm',
+}
 
 
 # SOCIALACCOUNT_PROVIDERS = {

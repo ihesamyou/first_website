@@ -8,12 +8,12 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  website:
+  personal_website:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/usr/src/website/
+      - .:/usr/src/personal_website/
     ports:
       - "8000:8000"
     depends_on:
@@ -21,8 +21,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-    image: website
-    container_name: website
+    image: personal_website
+    container_name: personal_website
 
   db:
     image: postgres:13
@@ -42,45 +42,45 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    container_name: website-postgres
+    container_name: personal_website_postgres
 
   redis:
     image: "redis:6.2-alpine"
-    container_name: website-redis
+    container_name: personal_website_redis
 
   celery:
     build: .
-    working_dir: /usr/src/website/personal_website
+    working_dir: /usr/src/personal_website/personal_website
     command: celery -A personal_website worker -l info
     volumes:
-      - .:/usr/src/website/
+      - .:/usr/src/personal_website/
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_started
-      website:
+      personal_website:
         condition: service_started
-    image: website-celery
-    container_name: website-celery
+    image: personal_website_celery
+    container_name: personal_website_celery
 
   celery-beat:
     build: .
-    working_dir: /usr/src/website/personal_website
+    working_dir: /usr/src/personal_website/personal_website
     command: celery -A personal_website beat -l info
     volumes:
-      - .:/usr/src/website/
+      - .:/usr/src/personal_website/
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_started
-      website:
+      personal_website:
         condition: service_started
       celery:
         condition: service_started
-    image: website-celerybeat
-    container_name: website-celerybeat
+    image: personal_website_celerybeat
+    container_name: personal_website_celerybeat
 
 volumes:
   postgres_data:

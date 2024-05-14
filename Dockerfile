@@ -16,7 +16,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # the application crashes without emitting any logs due to buffering.
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /usr/src/website
+WORKDIR /usr/src/personal_website
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
@@ -28,7 +28,7 @@ RUN adduser \
     --shell "/sbin/nologin" \
     --no-create-home \
     --uid "${UID}" \
-    website
+    personal_website
 
 
 RUN apt-get update && apt-get install -y curl
@@ -42,11 +42,15 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
+
+RUN chmod -R 777 /usr/src/personal_website
+
 # Switch to the non-privileged user to run the application.
-USER website
+USER personal_website
 
 # Copy the source code into the container.
-COPY . /usr/src/website
+COPY . /usr/src/personal_website
+COPY ./0003_alter_attachment_id.py /usr/local/lib/python3.10/site-packages/django_summernote/migrations/
 
 # Expose the port that the application listens on.
 EXPOSE 8000
