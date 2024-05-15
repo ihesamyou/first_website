@@ -42,15 +42,14 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-
-RUN chmod -R 777 /usr/src/personal_website
-
-# Switch to the non-privileged user to run the application.
-USER personal_website
-
 # Copy the source code into the container.
 COPY . /usr/src/personal_website
 COPY ./0003_alter_attachment_id.py /usr/local/lib/python3.10/site-packages/django_summernote/migrations/
+
+RUN chmod -R 755 /usr/src/personal_website
+
+# Switch to the non-privileged user to run the application.
+USER personal_website
 
 # Expose the port that the application listens on.
 EXPOSE 8000
